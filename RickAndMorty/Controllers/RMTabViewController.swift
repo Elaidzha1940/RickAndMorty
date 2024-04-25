@@ -1,7 +1,7 @@
 //  /*
 //
 //  Project: RickAndMorty
-//  File: ViewController.swift
+//  File: RMTabViewController.swift
 //  Created by: Elaidzha Shchukin
 //  Date: 25.04.2024
 //
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RMTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
