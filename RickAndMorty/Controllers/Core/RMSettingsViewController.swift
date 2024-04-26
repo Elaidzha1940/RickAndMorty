@@ -9,6 +9,7 @@
 
 import UIKit
 
+/// Controller to show various options and settings
 final class RMSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
