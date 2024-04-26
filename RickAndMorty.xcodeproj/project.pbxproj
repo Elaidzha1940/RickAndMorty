@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E402F3A32BDBF96E0078759E /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402F3A22BDBF96E0078759E /* RMEndpoint.swift */; };
 		E414B77F2BD9BF0B0067498F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B77E2BD9BF0B0067498F /* AppDelegate.swift */; };
 		E414B7812BD9BF0B0067498F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B7802BD9BF0B0067498F /* SceneDelegate.swift */; };
 		E414B7832BD9BF0B0067498F /* RMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B7822BD9BF0B0067498F /* RMTabBarController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E402F3A22BDBF96E0078759E /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
 		E414B77B2BD9BF0B0067498F /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E414B77E2BD9BF0B0067498F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E414B7802BD9BF0B0067498F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				E4592E142BDB35E900175AE2 /* RMService.swift */,
 				E4592E162BDB362B00175AE2 /* RMRequest.swift */,
+				E402F3A22BDBF96E0078759E /* RMEndpoint.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				E437FD382BD9F52100AF872D /* RMSettingsViewController.swift in Sources */,
 				E4592E152BDB35EA00175AE2 /* RMService.swift in Sources */,
 				E414B7812BD9BF0B0067498F /* SceneDelegate.swift in Sources */,
+				E402F3A32BDBF96E0078759E /* RMEndpoint.swift in Sources */,
 				E437FD2D2BD9F37800AF872D /* RMCharacter.swift in Sources */,
 				E4592E172BDB362B00175AE2 /* RMRequest.swift in Sources */,
 				E437FD322BD9F49500AF872D /* RMCharacterViewController.swift in Sources */,
