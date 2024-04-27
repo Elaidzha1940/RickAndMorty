@@ -15,17 +15,11 @@ struct RMCharacter: Codable {
     let status: RMCharacterStatus
     let species: String
     let type: String
-    let gender: String
+    let gender: RMCharacterGender
     let origin: RMOrigin
     let Location: RMOneLocation
     let image: String
     let episode: [String]
     let url: String
     let created: String
-}
-
-enum RMCharacterStatus: String, Codable {
-    case alive   = "Alive"
-    case dead    = "Dead"
-    case `unknown` = "unknown"
 }
