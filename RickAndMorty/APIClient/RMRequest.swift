@@ -11,5 +11,9 @@ import Foundation
 
 /// Object that represents a single API call 
 final class RMRequest {
-    
+    // Base url
+    // Endpoint
+    // Path components
+    // Query parameters 
+    // https://rickandmortyapi.com/api/location/3
 }
