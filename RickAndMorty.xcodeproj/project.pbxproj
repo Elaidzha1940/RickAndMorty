@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E402F3A32BDBF96E0078759E /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402F3A22BDBF96E0078759E /* RMEndpoint.swift */; };
+		E4043EE32BE4097E00A4EE3D /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4043EE22BE4097E00A4EE3D /* CharacterListView.swift */; };
 		E414B77F2BD9BF0B0067498F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B77E2BD9BF0B0067498F /* AppDelegate.swift */; };
 		E414B7812BD9BF0B0067498F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B7802BD9BF0B0067498F /* SceneDelegate.swift */; };
 		E414B7832BD9BF0B0067498F /* RMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414B7822BD9BF0B0067498F /* RMTabBarController.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		E402F3A22BDBF96E0078759E /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
+		E4043EE22BE4097E00A4EE3D /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		E414B77B2BD9BF0B0067498F /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E414B77E2BD9BF0B0067498F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E414B7802BD9BF0B0067498F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		E437FD232BD9F15500AF872D /* Veiws */ = {
 			isa = PBXGroup;
 			children = (
+				E4043EE22BE4097E00A4EE3D /* CharacterListView.swift */,
 			);
 			path = Veiws;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				E423A8FF2BDD4DE300599F28 /* RMOrigin.swift in Sources */,
 				E437FD342BD9F4CB00AF872D /* RMLocationViewController.swift in Sources */,
+				E4043EE32BE4097E00A4EE3D /* CharacterListView.swift in Sources */,
 				E423A9032BDD520D00599F28 /* RMCharacterStatus.swift in Sources */,
 				E423A9052BDD528A00599F28 /* RMCharacterGender.swift in Sources */,
 				E437FD2F2BD9F39100AF872D /* RMEpisode.swift in Sources */,
