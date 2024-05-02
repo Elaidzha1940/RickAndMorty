@@ -4,6 +4,12 @@
 Full featured iOS app showcasing the Rick And Morty API.
 -----
 
+
+
+
+
+Overview
+-----
 - Written in Swift
 - Uses both UIKit and SwiftUI
 - Designed with MVVM pattern
