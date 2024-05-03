@@ -21,3 +21,11 @@ Overview
 - Built in Xcode 15
 
 -----
+
+Design
+------
+The app has five key area that we will build out step-by-step
+
+
+-----
+
