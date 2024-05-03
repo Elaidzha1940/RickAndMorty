@@ -37,10 +37,10 @@ final class CharacterListView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews(collectionView, spinner)
-        
         addConstraint()
         spinner.startAnimating()
         viewModel.fetchCharacters()
+        setUPCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -53,6 +53,25 @@ final class CharacterListView: UIView {
             spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            
         ])
+    }
+    
+    private func setUPCollectionView() {
+        collectionView.dataSource = viewModel
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+            self.spinner.stopAnimating()
+            self.collectionView.isHidden = false
+
+            UIView.animate(withDuration: 0.4) {
+                self.collectionView.alpha = 1
+            }
+        })
     }
 }
