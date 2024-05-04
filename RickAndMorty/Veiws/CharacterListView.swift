@@ -64,7 +64,7 @@ final class CharacterListView: UIView {
     
     private func setUPCollectionView() {
         collectionView.dataSource = viewModel
-        
+        collectionView.delegate = viewModel 
         DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
             self.spinner.stopAnimating()
             self.collectionView.isHidden = false
