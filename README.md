@@ -25,7 +25,12 @@ Overview
 Design
 ------
 The app has five key area that we will build out step-by-step
-
+------
+- Characters
+- Locations
+- Episodes
+- Settings
+- Search
 
 -----
 
