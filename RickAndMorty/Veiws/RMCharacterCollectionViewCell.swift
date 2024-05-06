@@ -42,6 +42,8 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
+        
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -49,11 +51,16 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
+        NSLayoutConstraint.activate([
         
+        ])
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageView.image = nil
+        nameLabel.text = nil
+        statusLabel.text = nil
     }
     
     public func configure(with viewModel: RMCharacterCollectionViewCellViewModel) {
