@@ -24,10 +24,22 @@ final class RMCharacterCollectionViewCellViewModel {
         self.characterName = characterName
         self.characterStatus = characterStatus
         self.characterImageUrl = characterImageUrl
-       
+        
     }
     
     public var characterStatusText: String {
         return characterStatus.rawValue
+    }
+    
+    public func fetchImage(completion: @escaping (Result<Data, Error>) -> ()) {
+        guard let url = characterImageUrl else {
+            completion(.failure(URLError(.badURL)))
+            return
+        }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            
+        }
+        task.resume()
     }
 }
