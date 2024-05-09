@@ -17,7 +17,7 @@ final class RMCharacterListViewModel: NSObject {
                 print("Total: "+String(model.info.count))
                 print("Page result count: "+String(model.results.count))
             case .failure(let error):
-               print( String(describing: error))
+                print( String(describing: error))
             }
         }
     }
@@ -29,9 +29,16 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollisionBehav
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier,
             for: indexPath)
+                as? RMCharacterCollectionViewCell else {
+            fatalError("Unsupported cell")
+        }
+        let viewModel = RMCharacterCollectionViewCellViewModel(characterName: "Eli",
+                                                               characterStatus: .alive,
+                                                               characterImageUrl: nil)
+        cell.configure(with: viewModel)
         return cell
     }
     
