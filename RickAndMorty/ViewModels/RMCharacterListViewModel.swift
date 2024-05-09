@@ -10,11 +10,13 @@
 import UIKit
 
 final class RMCharacterListViewModel: NSObject {
-    func fetchCharacters() {
+    private var character
+    
+   public func fetchCharacters() {
         RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharatersResponse.self) { result in
             switch result {
-            case .success(let model):
-                print("Example image url: "+String(model.results.first?.image ?? "No image"))
+            case .success(let responseModel):
+                let results = responseModel.results
             case .failure(let error):
                 print( String(describing: error))
             }
