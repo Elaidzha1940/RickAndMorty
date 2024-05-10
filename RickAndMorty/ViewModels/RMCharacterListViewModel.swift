@@ -10,13 +10,25 @@
 import UIKit
 
 final class RMCharacterListViewModel: NSObject {
-    private var character
+    private var characters: [RMCharacter] = [] {
+        didSet {
+            for character in characters {
+                let viewModel = RMCharacterCollectionViewCellViewModel(
+                    characterName: character.name,
+                    characterStatus: character.status,
+                    characterImageUrl: URL(string: character.image))
+            }
+        }
+    }
+    private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
     
    public func fetchCharacters() {
-        RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharatersResponse.self) { result in
+        RMService.shared.execute(.listCharactersRequests, 
+                                 expecting: RMGetAllCharatersResponse.self) { [weak self] result in
             switch result {
             case .success(let responseModel):
                 let results = responseModel.results
+                self?.characters = results
             case .failure(let error):
                 print( String(describing: error))
             }
