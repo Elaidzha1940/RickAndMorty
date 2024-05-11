@@ -17,6 +17,7 @@ final class RMCharacterListViewModel: NSObject {
                     characterName: character.name,
                     characterStatus: character.status,
                     characterImageUrl: URL(string: character.image))
+                cellViewModels.append(viewModel)
             }
         }
     }
