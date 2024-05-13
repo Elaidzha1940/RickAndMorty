@@ -9,7 +9,13 @@
 
 import UIKit
 
+protocol RMCharacterListViewModelDelegate: AnyObject {
+    func didLoadInitialCharacters()
+}
+
 final class RMCharacterListViewModel: NSObject {
+    public weak var delegate: RMCharacterListViewModelDelegate?
+    
     private var characters: [RMCharacter] = [] {
         didSet {
             for character in characters {
@@ -30,6 +36,9 @@ final class RMCharacterListViewModel: NSObject {
             case .success(let responseModel):
                 let results = responseModel.results
                 self?.characters = results
+                DispatchQueue.main.async {
+                    self?.delegate?.didLoadInitialCharacters()
+                }
             case .failure(let error):
                 print( String(describing: error))
             }
@@ -39,7 +48,7 @@ final class RMCharacterListViewModel: NSObject {
 
 extension RMCharacterListViewModel: UICollectionViewDataSource, UICollisionBehaviorDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,13 +58,7 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollisionBehav
                 as? RMCharacterCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        let viewModel = RMCharacterCollectionViewCellViewModel(
-            characterName: "Eli",
-            characterStatus: .alive,
-            characterImageUrl: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
-        )
-        
-        cell.configure(with: viewModel)
+        cell.configure(with: cellViewModels[indexPath.row])
         return cell
     }
     
