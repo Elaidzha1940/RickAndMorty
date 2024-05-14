@@ -91,7 +91,6 @@ extension RMCharacterListView: RMCharacterListViewModelDelegate {
         UIView.animate(withDuration: 0.4) {
             self.collectionView.alpha = 1
         }
-        
     }
 }
 
