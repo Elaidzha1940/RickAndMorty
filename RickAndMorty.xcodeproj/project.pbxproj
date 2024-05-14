@@ -136,6 +136,7 @@
 		E437FD262BD9F18000AF872D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E49372372BF351320000F64F /* Other */,
 				E437FD302BD9F43D00AF872D /* Core */,
 			);
 			path = Controllers;
@@ -202,6 +203,13 @@
 				E472876E2BE2C6C200840B05 /* RMGetAllCharatersResponse.swift */,
 			);
 			path = APIResponseTypes;
+			sourceTree = "<group>";
+		};
+		E49372372BF351320000F64F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
