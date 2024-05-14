@@ -12,7 +12,7 @@ import UIKit
 /// Controller  to show info about single character
 final class RMCharacterDetailViewController: UIViewController {
     
-    init(viewModel: <#type#> ) {
+    init(viewModel: RMCharacterDetailViewModel ) {
         super.init(nibName: nil, bundle: nil)
     }
     

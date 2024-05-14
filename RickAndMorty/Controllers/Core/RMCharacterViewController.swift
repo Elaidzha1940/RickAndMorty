@@ -35,5 +35,8 @@ final class RMCharacterViewController: UIViewController, RMCharacterListViewDele
     
     func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
         // Open detail controller for that
+        let viewModel = RMCharacterDetailViewModel(character: character)
+        let detailVC = RMCharacterDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
