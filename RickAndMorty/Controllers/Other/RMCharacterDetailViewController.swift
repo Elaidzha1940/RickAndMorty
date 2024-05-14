@@ -9,9 +9,21 @@
 
 import UIKit
 
-class RMCharacterDetailViewController: UIViewController {
-
+/// Controller  to show info about single character
+final class RMCharacterDetailViewController: UIViewController {
+    
+    init(viewModel: <#type#> ) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Unsupperted")
+    }
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .green
     }
 }

@@ -20,7 +20,7 @@ final class RMCharacterListView: UIView {
     
     private let viewModel = RMCharacterListViewModel()
     
-    private weak var delegate: RMCharacterListViewDelegate?
+    public weak var delegate: RMCharacterListViewDelegate?
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
