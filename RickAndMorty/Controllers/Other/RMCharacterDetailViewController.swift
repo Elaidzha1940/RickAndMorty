@@ -11,8 +11,10 @@ import UIKit
 
 /// Controller  to show info about single character
 final class RMCharacterDetailViewController: UIViewController {
+    private let viewModel: RMCharacterDetailViewModel
     
     init(viewModel: RMCharacterDetailViewModel ) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,5 +27,6 @@ final class RMCharacterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+        title = viewModel.title
     }
 }
