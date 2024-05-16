@@ -18,6 +18,8 @@ protocol RMCharacterListViewModelDelegate: AnyObject {
 final class RMCharacterListViewModel: NSObject {
     public weak var delegate: RMCharacterListViewModelDelegate?
     
+    private var isLoadingMoreCharacters = false
+    
     private var characters: [RMCharacter] = [] {
         didSet {
             for character in characters {
@@ -55,6 +57,7 @@ final class RMCharacterListViewModel: NSObject {
     
     /// Paginate if additional characters are needed
     public func fetchAdditionalCharacters() {
+        isLoadingMoreCharacters = true
         // Fetch characters
     }
     
@@ -116,8 +119,16 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollisionBehav
 // MARK: - ScrollView
 extension RMCharacterListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard shouldShowLoadMoreIndicator else {
+        guard shouldShowLoadMoreIndicator, !isLoadingMoreCharacters else {
             return
+        }
+        
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
+        
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            fetchAdditionalCharacters()
         }
     }
 }
