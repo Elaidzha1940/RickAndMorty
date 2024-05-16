@@ -39,6 +39,9 @@ final class RMCharacterListView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(UICollectionViewCell.self,
                                 forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
+        collectionView.register(RMFooterLoadingCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
     
@@ -87,7 +90,7 @@ extension RMCharacterListView: RMCharacterListViewModelDelegate {
     func didLoadInitialCharacters() {
         spinner.stopAnimating()
         collectionView.isHidden = false
-        collectionView.reloadData() // Initial fetch 
+        collectionView.reloadData() // Initial fetch
         UIView.animate(withDuration: 0.4) {
             self.collectionView.alpha = 1
         }
