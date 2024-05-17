@@ -24,7 +24,7 @@ Overview
 
 Design
 ------
-The app has five key area that we will build out step-by-step
+The app has five key area
 ------
 - Characters
 - Locations
