@@ -58,10 +58,18 @@ final class RMCharacterListViewModel: NSObject {
     /// Paginate if additional characters are needed
     public func fetchAdditionalCharacters(url: URL) {
         isLoadingMoreCharacters = true
-        RMService.shared.execute(<#T##request: RMRequest##RMRequest#>,
-                                 expecting: <#T##(Decodable & Encodable).Type#>,
-                                 completion: <#T##(Result<Decodable & Encodable, any Error>) -> Void#>)
-        // Fetch characters
+        guard let request = RMRequest(url: url) else {
+            return
+        }
+        
+        RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { result in
+            switch result {
+            case .success(let success):
+                print(String(describing: success))
+            case .failure(let failure):
+                print(String(describing: failure))
+            }
+        }
     }
     
     public var shouldShowLoadMoreIndicator: Bool {
@@ -123,8 +131,8 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollisionBehav
 extension RMCharacterListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator, !isLoadingMoreCharacters,
-        let nextUrlString = apiInfo?.next,
-        let url = URL(string: nextUrlString) else {
+              let nextUrlString = apiInfo?.next,
+              let url = URL(string: nextUrlString) else {
             return
         }
         

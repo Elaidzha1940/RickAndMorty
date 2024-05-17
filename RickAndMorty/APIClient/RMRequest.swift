@@ -83,9 +83,20 @@ final class RMRequest {
             let components = trimmed.components(separatedBy: "/")
             if !components.isEmpty {
                 let endpointString = components[0]
+                if let rmEndpoint = RMEndpoint(rawValue: endpointString) {
+                    self.init(endpoint: rmEndpoint)
+                    return
+                }
             }
         } else if trimmed.contains("?") {
-            
+            let components = trimmed.components(separatedBy: "?")
+            if !components.isEmpty {
+                let endpointString = components[0]
+                if let rmEndpoint = RMEndpoint(rawValue: endpointString) {
+                    self.init(endpoint: rmEndpoint)
+                    return
+                }
+            }
         }
         
         return nil
