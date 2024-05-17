@@ -104,7 +104,7 @@ final class RMRequest {
                 })
                 
                 if let rmEndpoint = RMEndpoint(rawValue: endpointString) {
-                    self.init(endpoint: rmEndpoint)
+                    self.init(endpoint: rmEndpoint, queryParameters: queryItems)
                     return
                 }
             }
