@@ -24,12 +24,14 @@ final class RMCharacterListViewModel: NSObject {
     
     private var characters: [RMCharacter] = [] {
         didSet {
-            for character in characters where !cellViewModels.contains(where: { $0.characterName == character.name}) {
+            for character in characters {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,
                     characterImageUrl: URL(string: character.image))
-                cellViewModels.append(viewModel)
+                if !cellViewModels.contains(viewModel) {
+                    cellViewModels.append(viewModel)
+                }
             }
         }
     }
@@ -87,7 +89,7 @@ final class RMCharacterListViewModel: NSObject {
                 })
                 strongSelf.characters.append(contentsOf: moreResults)
                 
-                print(String(strongSelf.characters.count))
+//                print(String("ViewModels: "+strongSelf.cellViewModels.count))
                 
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(
