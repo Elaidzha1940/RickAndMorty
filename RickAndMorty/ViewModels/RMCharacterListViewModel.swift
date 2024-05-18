@@ -53,7 +53,7 @@ final class RMCharacterListViewModel: NSObject {
                     self?.delegate?.didLoadInitialCharacters()
                 }
             case .failure(let error):
-                print( String(describing: error))
+                print(String(describing: error))
             }
         }
     }
@@ -79,7 +79,7 @@ final class RMCharacterListViewModel: NSObject {
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 strongSelf.apiInfo = info
-             
+                
                 let originalCount = strongSelf.characters.count
                 let newCount = moreResults.count
                 let total = originalCount+newCount
@@ -88,9 +88,7 @@ final class RMCharacterListViewModel: NSObject {
                     return IndexPath(row: $0, section: 0)
                 })
                 strongSelf.characters.append(contentsOf: moreResults)
-                
-//                print(String("ViewModels: "+strongSelf.cellViewModels.count))
-                
+                            
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(
                         with: indexPathToAdd)

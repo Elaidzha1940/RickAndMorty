@@ -10,20 +10,10 @@
 import Foundation
 
 final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
-   
+    
     public let characterName: String
     private let characterStatus: RMCharacterStatus
     private let characterImageUrl: URL?
-    
-    static func == (lhs: RMCharacterCollectionViewCellViewModel, rhs: RMCharacterCollectionViewCellViewModel) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(characterName)
-        hasher.combine(characterStatus)
-        hasher.combine(characterImageUrl)
-    }
     
     // MARK: - Init
     init(
@@ -41,7 +31,7 @@ final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
     }
     
     public func fetchImage(completion: @escaping (Result<Data, Error>) -> ()) {
-        // ToDo: Abstract to Image Manager 
+        // ToDo: Abstract to Image Manager
         guard let url = characterImageUrl else {
             completion(.failure(URLError(.badURL)))
             return
@@ -56,5 +46,17 @@ final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
             completion(.success(data))
         }
         task.resume()
+    }
+    
+    // MARK: - Hashable
+    
+    static func == (lhs: RMCharacterCollectionViewCellViewModel, rhs: RMCharacterCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(characterName)
+        hasher.combine(characterStatus)
+        hasher.combine(characterImageUrl)
     }
 }
