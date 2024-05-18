@@ -36,7 +36,7 @@
 		E472876F2BE2C6C200840B05 /* RMGetAllCharatersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472876E2BE2C6C200840B05 /* RMGetAllCharatersResponse.swift */; };
 		E47287712BE4045A00840B05 /* RMCharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47287702BE4045A00840B05 /* RMCharacterListViewModel.swift */; };
 		E49772722BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49772712BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift */; };
-		E4AB350B2BF8A5B700BFA6B0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB350A2BF8A5B700BFA6B0 /* ImageLoader.swift */; };
+		E4AB350B2BF8A5B700BFA6B0 /* RMImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB350A2BF8A5B700BFA6B0 /* RMImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +71,7 @@
 		E472876E2BE2C6C200840B05 /* RMGetAllCharatersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllCharatersResponse.swift; sourceTree = "<group>"; };
 		E47287702BE4045A00840B05 /* RMCharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterListViewModel.swift; sourceTree = "<group>"; };
 		E49772712BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
-		E4AB350A2BF8A5B700BFA6B0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		E4AB350A2BF8A5B700BFA6B0 /* RMImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 		E437FD272BD9F1A300AF872D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				E4AB350A2BF8A5B700BFA6B0 /* ImageLoader.swift */,
+				E4AB350A2BF8A5B700BFA6B0 /* RMImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				E437FD362BD9F4F100AF872D /* RMEpisodeViewController.swift in Sources */,
 				E42FEF732BE9337A00EC02E4 /* RMCharacterCollectionViewCell.swift in Sources */,
 				E414B77F2BD9BF0B0067498F /* AppDelegate.swift in Sources */,
-				E4AB350B2BF8A5B700BFA6B0 /* ImageLoader.swift in Sources */,
+				E4AB350B2BF8A5B700BFA6B0 /* RMImageLoader.swift in Sources */,
 				E437FD2B2BD9F30B00AF872D /* RMLocation.swift in Sources */,
 				E437FD382BD9F52100AF872D /* RMSettingsViewController.swift in Sources */,
 				E4592E152BDB35EA00175AE2 /* RMService.swift in Sources */,
