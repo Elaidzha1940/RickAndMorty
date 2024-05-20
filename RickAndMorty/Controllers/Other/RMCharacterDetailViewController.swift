@@ -38,9 +38,8 @@ final class RMCharacterDetailViewController: UIViewController {
             target: self,
             action: #selector(didTapShare))
         addConsraints()
-        viewModel.fetchCharacterData()
     }
- 
+    
     @objc
     private func didTapShare() {
         // Share character info
