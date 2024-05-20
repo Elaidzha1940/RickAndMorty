@@ -25,9 +25,12 @@ final class RMCharacterDetailViewModel {
     }
     
     public func fetchCharacterData() {
+        print(character.url)
         guard let url = requestUrl,
               let request = RMRequest(url: url) else {
+            print("Failed")
             return
         }
+        print(request.url)
     }
 }
