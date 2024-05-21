@@ -13,12 +13,13 @@ import UIKit
 final class RMCharacterDetailViewController: UIViewController {
     private let viewModel: RMCharacterDetailViewModel
     
-    private let detailView = RMCharacterDetailView()
+    private let detailView: RMCharacterDetailView
     
     // MARK: - Init
     
     init(viewModel: RMCharacterDetailViewModel ) {
         self.viewModel = viewModel
+        self.detailView = RMCharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
