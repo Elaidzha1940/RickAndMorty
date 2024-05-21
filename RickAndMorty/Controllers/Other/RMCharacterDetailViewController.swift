@@ -38,6 +38,9 @@ final class RMCharacterDetailViewController: UIViewController {
             target: self,
             action: #selector(didTapShare))
         addConsraints()
+        
+        detailView.collectionView?.delegate = self
+        detailView.collectionView?.dataSource = self
     }
     
     @objc
@@ -55,6 +58,8 @@ final class RMCharacterDetailViewController: UIViewController {
     }
 }
 
+// MARK: - CollectionView
+
 extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
@@ -63,6 +68,6 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .systemPurple
-        return cell 
+        return cell
     }
 }
