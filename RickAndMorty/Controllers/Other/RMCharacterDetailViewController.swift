@@ -62,13 +62,22 @@ final class RMCharacterDetailViewController: UIViewController {
 // MARK: - CollectionView
 
 extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.sections.count
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemPurple
+        if indexPath.section == 0 {
+            cell.backgroundColor = .systemPurple
+        } else if indexPath.section == 1 {
+            cell.backgroundColor = .systemBlue
+        } else {
+            cell.backgroundColor = .systemBrown
+        }
         return cell
     }
 }

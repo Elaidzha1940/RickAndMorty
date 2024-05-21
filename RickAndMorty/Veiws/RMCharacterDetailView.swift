@@ -14,7 +14,7 @@ final class RMCharacterDetailView: UIView {
     
     public var collectionView: UICollectionView?
     
-    private let viewModel: RMCharacterDetailViewModel?
+    private let viewModel: RMCharacterDetailViewModel
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
@@ -25,7 +25,7 @@ final class RMCharacterDetailView: UIView {
     
     // MARK: - Init
     
-    init(frame: CGRect, viewModel: RMCharacterDetailViewModel?) {
+    init(frame: CGRect, viewModel: RMCharacterDetailViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
