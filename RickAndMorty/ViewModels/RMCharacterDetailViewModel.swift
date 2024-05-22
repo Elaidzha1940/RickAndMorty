@@ -36,7 +36,7 @@ final class RMCharacterDetailViewModel {
     
     // MARK: - Layers
     
-    // MARK: - photo
+    // photo
     public func createPhotoSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -58,7 +58,7 @@ final class RMCharacterDetailViewModel {
         return section
     }
     
-    // MARK: - information
+    // information
     public func createInfoSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -80,7 +80,7 @@ final class RMCharacterDetailViewModel {
         return section
     }
     
-    // MARK: - episodes
+    // episodes
     public func createEpisodeSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -88,9 +88,9 @@ final class RMCharacterDetailViewModel {
                 heightDimension: .fractionalHeight(1.0)))
         
         item.contentInsets = NSDirectionalEdgeInsets(top: 10,
-                                                     leading: 10,
+                                                     leading: 5,
                                                      bottom: 10,
-                                                     trailing: 10)
+                                                     trailing: 8)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
