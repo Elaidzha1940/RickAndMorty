@@ -69,81 +69,13 @@ final class RMCharacterDetailView: UIView {
     
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let sectionTypes = viewModel.sections
-        
         switch sectionTypes[sectionIndex] {
         case .photo:
-            return createPhotoSectionLayout()
+            return viewModel.createPhotoSectionLayout()
         case .information:
-            return createInfoSectionLayout()
+            return viewModel.createInfoSectionLayout()
         case .episodes:
-            return createEpisodeSectionLayout()
+            return viewModel.createEpisodeSectionLayout()
         }
-    }
-    
-    // MARK: - photo
-    private func createPhotoSectionLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)))
-        
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                     leading: 0,
-                                                     bottom: 10,
-                                                     trailing: 0)
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(0.5)),
-            subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
-    
-    // MARK: - information
-    private func createInfoSectionLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.5),
-                heightDimension: .fractionalHeight(1.0)))
-        
-        item.contentInsets = NSDirectionalEdgeInsets(top: 2,
-                                                     leading: 2,
-                                                     bottom: 2,
-                                                     trailing: 2)
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(150)),
-            subitems: [item, item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
-    
-    // MARK: - episodes
-    private func createEpisodeSectionLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)))
-        
-        item.contentInsets = NSDirectionalEdgeInsets(top: 10,
-                                                     leading: 10,
-                                                     bottom: 10,
-                                                     trailing: 10)
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.3),
-                heightDimension: .absolute(150)),
-            subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        return section
     }
 }
