@@ -66,15 +66,14 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
         return viewModel.sections.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        let sectionType = viewModel.sections[section]
+        switch sectionType {
+        case .photo:
             return 1
-        case 1:
-            return 8
-        case 2:
-            return 15
-        default:
-            return 1
+        case .information(let viewModels):
+            return viewModels.count
+        case .episodes(let viewModels):
+            return viewModels.count
         }
     }
     

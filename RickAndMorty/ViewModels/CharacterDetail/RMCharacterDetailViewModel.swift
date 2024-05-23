@@ -44,7 +44,6 @@ final class RMCharacterDetailViewModel {
                 .init(),
                 .init()
             ])
-            
         ]
     }
     
