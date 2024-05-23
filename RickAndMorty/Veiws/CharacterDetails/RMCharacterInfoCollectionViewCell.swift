@@ -10,5 +10,5 @@
 import UIKit
 
 class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
-    
+    static let cellIdentifier = "RMCharacterInfoCollectionViewCell"
 }
