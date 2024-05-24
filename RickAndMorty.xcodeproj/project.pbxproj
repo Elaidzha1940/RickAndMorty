@@ -172,9 +172,9 @@
 		E437FD242BD9F16600AF872D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E4197AE32BFE1C0E00B9AA6E /* CharacterDetail */,
 				E47287702BE4045A00840B05 /* RMCharacterListViewModel.swift */,
 				E42FEF742BE936DC00EC02E4 /* RMCharacterCollectionViewCellViewModel.swift */,
+				E4197AE32BFE1C0E00B9AA6E /* CharacterDetail */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
