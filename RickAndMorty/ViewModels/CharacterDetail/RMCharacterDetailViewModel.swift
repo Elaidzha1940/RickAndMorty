@@ -33,14 +33,14 @@ final class RMCharacterDetailViewModel {
         sections = [
             .photo(viewModel: .init(imageUrl: URL(string: character.image))),
             .information(viewModels: [
-                .init(value: "", title: "Status"),
-                .init(value: "", title: "Gender"),
-                .init(value: "", title: "Type"),
-                .init(value: "", title: "Species"),
-                .init(value: "", title: "Origin"),
-                .init(value: "", title: "Location"),
-                .init(value: "", title: "Created"),
-                .init(value: "", title: "Total Episodes"),
+                .init(value: character.status.text, title: "Status"),
+                .init(value: character.gender.rawValue, title: "Gender"),
+                .init(value: character.type, title: "Type"),
+                .init(value: character.species, title: "Species"),
+                .init(value: character.origin.name, title: "Origin"),
+                .init(value: character.location.name, title: "Location"),
+                .init(value: character.created, title: "Created"),
+                .init(value: "\(character.episode.count)", title: "Total Episodes"),
             ]),
             .episodes(viewModels: character.episode.compactMap ({
                 return RMCharacterEpisodeCollectionViewCellViewModel(episodeDataUrl: URL(string: $0))
