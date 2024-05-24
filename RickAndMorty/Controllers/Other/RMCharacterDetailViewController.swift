@@ -87,6 +87,7 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
                 for: indexPath) as? RMCharacterPhotoCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(with: viewModel)
             cell.backgroundColor = .systemRed
             return cell
         case .information(let viewModels):
@@ -95,6 +96,7 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
                 for: indexPath) as? RMCharacterInfoCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(with: viewModels[indexPath.row])
             cell.backgroundColor = .systemGray
             return cell
         case .episodes(let viewModels):
@@ -103,6 +105,7 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
                 for: indexPath) as? RMCharacterEpisodeCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(with: viewModels[indexPath.row])
             cell.backgroundColor = .systemTeal
             return cell
         }
