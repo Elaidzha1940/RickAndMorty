@@ -10,11 +10,47 @@
 import Foundation
 
 final class RMCharacterInfoCollectionViewCellViewModel {
-    public let value: String
-    public let title: String
+    private let type: `Type`
     
-    init(value: String, title: String) {
+    public let value: String
+    public var title: String {
+        self.type.displayTitle
+    }
+    
+    enum `Type` {
+        case status
+        case gender
+        case type
+        case species
+        case origin
+        case created
+        case location
+        case episodeCount
+        
+        var displayTitle: String {
+            switch self {
+            case .status:
+                return "Some"
+            case .gender:
+                return "Some"
+            case .type:
+                return "Some"
+            case .species:
+                return "Some"
+            case .origin:
+                return "Some"
+            case .created:
+                return "Some"
+            case .location:
+                return "Some"
+            case .episodeCount:
+                return "Some"
+            }
+        }
+    }
+    
+    init(type: `Type`, value: String) {
         self.value = value
-        self.title = title
+        self.type = type
     }
 }
