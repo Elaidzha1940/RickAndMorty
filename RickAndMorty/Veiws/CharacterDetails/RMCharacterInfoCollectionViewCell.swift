@@ -16,6 +16,7 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Earth"
+        label.font = .systemFont(ofSize: 22, weight: .light)
         return label
     }()
     
@@ -32,6 +33,7 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
         let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.image = UIImage(systemName: "globe")
+        icon.contentMode = .scaleAspectFit
         return icon
     }()
     
@@ -48,6 +50,7 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
         contentView.layer.cornerRadius = 15
+        contentView.layer.masksToBounds = true
         contentView.addSubviews(valueLabel, titleLabel, iconImageView, titleContainerView)
         titleContainerView.addSubview(titleLabel)
         setUpConstraints()
@@ -69,16 +72,15 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
             titleLabel.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
             
-            iconImageView.heightAnchor.constraint(equalToConstant: 70),
-            iconImageView.widthAnchor.constraint(equalToConstant: 70),
-            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            iconImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 20),
-            iconImageView.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor, constant: -10),
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
+            iconImageView.widthAnchor.constraint(equalToConstant: 30),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             
-            valueLabel.leftAnchor.constraint(equalTo: iconImageView.leftAnchor, constant: 10),
+            valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
             valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor, constant: -10),
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
+            valueLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
