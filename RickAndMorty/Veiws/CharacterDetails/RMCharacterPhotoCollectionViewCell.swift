@@ -57,3 +57,4 @@ final class RMCharacterPhotoCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
