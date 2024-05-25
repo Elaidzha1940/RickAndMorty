@@ -90,7 +90,9 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
     
     public func configure(with viewModel: RMCharacterInfoCollectionViewCellViewModel) {
         titleLabel.text = viewModel.title
-        valueLabel .text = viewModel.value
+        valueLabel .text = viewModel.displayValue
+        iconImageView.image = viewModel.iconImage
+        iconImageView.tintColor = viewModel.tintColor
         
     }
 }
