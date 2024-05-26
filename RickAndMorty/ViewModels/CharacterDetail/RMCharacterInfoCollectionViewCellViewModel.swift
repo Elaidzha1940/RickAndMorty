@@ -13,12 +13,26 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     private let type: `Type`
     private let value: String
     
+    static let dateFormatter: ISO8601DateFormatter = {
+        // Format
+        // 2017-1104T18:50:21.651Z
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = .current
+        return formatter
+    }()
+    
     public var title: String {
         type.displayTitle
     }
     
     public var displayValue: String {
         if value.isEmpty { return "None"}
+        
+        if let date = Self.dateFormatter.date(from: value),
+            type == .created {
+            print(date)
+        }
+            
         return value
     }
     
@@ -30,7 +44,7 @@ final class RMCharacterInfoCollectionViewCellViewModel {
         return type.tintColor
     }
     
-    enum `Type` {
+    enum `Type`: String {
         case status
         case gender
         case type
@@ -84,22 +98,16 @@ final class RMCharacterInfoCollectionViewCellViewModel {
         
         var displayTitle: String {
             switch self {
-            case .status:
-                return "Some"
-            case .gender:
-                return "Some"
-            case .type:
-                return "Some"
-            case .species:
-                return "Some"
-            case .origin:
-                return "Some"
-            case .created:
-                return "Some"
-            case .location:
-                return "Some"
+            case .status,
+                    .gender,
+                    .type,
+                    .species,
+                    .origin,
+                    .created,
+                    .location:
+                return rawValue.uppercased()
             case .episodeCount:
-                return "Some"
+                return "EPISODE COUNT"
             }
         }
     }

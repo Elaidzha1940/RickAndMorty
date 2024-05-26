@@ -83,9 +83,11 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        valueLabel.text     = nil
-        titleLabel.text     = nil
-        iconImageView.image = nil
+        valueLabel.text         = nil
+        titleLabel.text         = nil
+        iconImageView.image     = nil
+        iconImageView.tintColor = .label
+        titleLabel.textColor    = .label
     }
     
     public func configure(with viewModel: RMCharacterInfoCollectionViewCellViewModel) {
@@ -93,6 +95,6 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
         valueLabel .text = viewModel.displayValue
         iconImageView.image = viewModel.iconImage
         iconImageView.tintColor = viewModel.tintColor
-        
+        titleLabel.textColor = viewModel.tintColor
     }
 }
