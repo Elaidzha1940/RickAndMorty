@@ -12,6 +12,32 @@ import UIKit
 class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RMCharacterEpisodeCollectionViewCell"
     
+    private let seasonLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .light)
+        return label
+    }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .light)
+        return label
+    }()
+    
+    private let airDateLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .light)
+        return label
+    }()
+    
+    // MARK: - Init 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .systemCyan
