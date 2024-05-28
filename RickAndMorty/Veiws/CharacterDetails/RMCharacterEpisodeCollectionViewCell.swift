@@ -37,11 +37,12 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .tertiarySystemBackground
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor.systemMint.cgColor
         contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
+        setUpConstraints()
     }
    
     required init?(coder: NSCoder) {
@@ -49,7 +50,22 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
-        
+        NSLayoutConstraint.activate([
+            seasonLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            seasonLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            seasonLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            seasonLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+            
+            nameLabel.topAnchor.constraint(equalTo: seasonLabel.topAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+            
+            airDateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            airDateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            airDateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            airDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+        ])
     }
     
     override func prepareForReuse() {
@@ -62,12 +78,9 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
         viewModel.registerForData { [weak self] data in
             // Main Queue
-            print(data.name)
-            print(data.air_date)
-            print(data.episode)
             self?.nameLabel.text = data.name
-            self?.seasonLabel.text = data.episode
-            self?.airDateLabel.text = data.air_date
+            self?.seasonLabel.text = "Episode "+data.episode
+            self?.airDateLabel.text = "Aired on "+data.air_date
         }
         viewModel.fetchEpisode()
     }

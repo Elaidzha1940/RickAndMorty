@@ -10,9 +10,9 @@
 import Foundation
 
 protocol RMEpisodeDataRender {
-    var name: String { get }
+    var name:     String { get }
     var air_date: String { get }
-    var episode: String { get }
+    var episode:  String { get }
 }
 
 final class RMCharacterEpisodeCollectionViewCellViewModel {
@@ -42,7 +42,7 @@ final class RMCharacterEpisodeCollectionViewCellViewModel {
     }
     
     public func fetchEpisode() {
-        guard !isFetching else { 
+        guard !isFetching else {
             if let model = episode {
                 dataBlock?(model)
             }

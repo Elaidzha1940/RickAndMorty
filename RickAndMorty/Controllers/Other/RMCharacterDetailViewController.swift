@@ -12,7 +12,6 @@ import UIKit
 /// Controller  to show info about single character
 final class RMCharacterDetailViewController: UIViewController {
     private let viewModel: RMCharacterDetailViewModel
-    
     private let detailView: RMCharacterDetailView
     
     // MARK: - Init
@@ -106,6 +105,17 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
             let viewModel = viewModels[indexPath.row]
             cell.configure(with: viewModel)
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionType = viewModel.sections[indexPath.section]
+        switch sectionType {
+        case .photo, .information:
+            break
+        case .episodes(let viewModels):
+            let episodes = self.viewModel.episodes
+            let selection = episodes[indexPath.row]
         }
     }
 }
