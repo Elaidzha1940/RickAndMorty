@@ -14,25 +14,22 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     private let seasonLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .regular)
         return label
     }()
     
     private let airDateLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 18, weight: .light)
         return label
     }()
     
@@ -40,8 +37,11 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemCyan
+        contentView.backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.systemMint.cgColor
+        contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
     }
    
     required init?(coder: NSCoder) {
@@ -54,13 +54,20 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        seasonLabel.text = nil
+        nameLabel.text = nil
+        airDateLabel.text = nil
     }
     
     public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
-        viewModel.registerForData { data in
+        viewModel.registerForData { [weak self] data in
+            // Main Queue
             print(data.name)
             print(data.air_date)
             print(data.episode)
+            self?.nameLabel.text = data.name
+            self?.seasonLabel.text = data.episode
+            self?.airDateLabel.text = data.air_date
         }
         viewModel.fetchEpisode()
     }
