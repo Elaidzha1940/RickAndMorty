@@ -15,6 +15,8 @@ final class RMService {
     /// Shared Singletone instance
     static let shared = RMService()
     
+    private let cacheManager = RMAPICacheManager()
+    
     /// Privatized constructor
     private init() {}
     
