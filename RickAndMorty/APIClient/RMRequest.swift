@@ -9,15 +9,13 @@
 
 import Foundation
 
-//https://rickandmortyapi.com/documentation/#get-all-characters
-//https://rickandmortyapi.com/api/location/3
-
 /// Object that represents a single API call
 final class RMRequest {
     /// API Constants
     private struct Constants {
-        static let baseUrl = "https://rickandmortyapi.com/documentation/#get-all-characters"
+        static let baseUrl = "https://rickandmortyapi.com/api"
     }
+    
     /// Desired endpoint
     private let endpoint: RMEndpoint
     
@@ -26,7 +24,6 @@ final class RMRequest {
     
     /// Query arguments for API , if any
     private let queryParameters: [URLQueryItem]
-    
     
     /// Constructed url for api request in string format
     private var urlString: String {
