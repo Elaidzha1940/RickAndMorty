@@ -1,15 +1,15 @@
 //  /*
 //
 //  Project: RickAndMorty
-//  File: RMGetAllCharatersResponse.swift
+//  File: RMGetAllEpisodesResponse.swift
 //  Created by: Elaidzha Shchukin
-//  Date: 01.05.2024
+//  Date: 30.05.2024
 //
 //  */
 
 import Foundation
 
-struct RMGetAllCharatersResponse: Codable {
+struct RMGetAllEpisodesResponse: Codable {
     struct Info: Codable {
         let count: Int
         let pages: Int
@@ -18,7 +18,5 @@ struct RMGetAllCharatersResponse: Codable {
     }
     
     let info: Info
-    let results: [RMCharacter]
-    
+    let results: [RMEpisode]
 }
-

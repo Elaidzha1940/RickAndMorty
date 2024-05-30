@@ -25,7 +25,7 @@ final class RMEpisodeListViewModel: NSObject {
         didSet {
             for episode in episodes {
                 let viewModel = RMCharacterEpisodeCollectionViewCellViewModel(
-                    episodeDataUrl: URL(string: episode.url)
+                    episodeDataUrl: URL(string: episode.url))
                 
                 if !cellViewModels.contains(viewModel) {
                     cellViewModels.append(viewModel)
@@ -35,19 +35,19 @@ final class RMEpisodeListViewModel: NSObject {
     }
     
     private var cellViewModels: [RMCharacterEpisodeCollectionViewCellViewModel] = []
-    private var apiInfo: RMGetAllCharatersResponse.Info? = nil
+    private var apiInfo: RMGetAllEpisodesResponse.Info? = nil
     
     /// Fetch initial set of characters (20)
-    public func fetchCharacters() {
-        RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharatersResponse.self) { [weak self] result in
+    public func fetchEpisodes() {
+        RMService.shared.execute(.listEpisodesRequest, expecting: RMGetAllEpisodesResponse.self) { [weak self] result in
             switch result {
             case .success(let responseModel):
                 let results = responseModel.results
                 let info = responseModel.info
-                self?.characters = results
+                self?.episodes = results
                 self?.apiInfo = info
                 DispatchQueue.main.async {
-                    self?.delegate?.didLoadInitialCharacters()
+                    self?.delegate?.didLoadInitialEpisodes()
                 }
             case .failure(let error):
                 print(String(describing: error))
