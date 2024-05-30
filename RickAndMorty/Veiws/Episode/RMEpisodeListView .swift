@@ -80,7 +80,7 @@ final class RMEpisodeListView: UIView {
     }
 }
 
-extension RMCharacterListView: RMCharacterListViewModelDelegate {
+extension RMEpisodeListView: RMEpisodeListViewModelDelegate {
     func didSelectCharacter(_ character: RMCharacter) {
         delegate?.rmCharacterListView(self, didSelectCharacter: character)
     }

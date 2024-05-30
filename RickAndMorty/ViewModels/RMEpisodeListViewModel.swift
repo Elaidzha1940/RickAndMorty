@@ -1,34 +1,32 @@
 //  /*
 //
 //  Project: RickAndMorty
-//  File: CharacterListViewModel.swift
+//  File: RMEpisodeListViewModel.swift
 //  Created by: Elaidzha Shchukin
-//  Date: 02.05.2024
+//  Date: 30.05.2024
 //
 //  */
 
-import UIKit
+import Foundation
 
-protocol RMCharacterListViewModelDelegate: AnyObject {
-    func didLoadInitialCharacters()
-    func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
+protocol RMEpisodeListViewModelDelegate: AnyObject {
+    func didLoadInitialEpisodes()
+    func didLoadMoreEpisodes(with newIndexPaths: [IndexPath])
     
-    func didSelectCharacter(_ character: RMCharacter)
+    func didSelectEpisode (_ episode: RMEpisode)
 }
 
-/// View Model handle character list view logic
-final class RMCharacterListViewModel: NSObject {
-    public weak var delegate: RMCharacterListViewModelDelegate?
-    
+/// View Model handle episode list view logic
+final class RMEpisodeListViewModel: NSObject {
+    public weak var delegate: RMEpisodeListViewModelDelegate?
     private var isLoadingMoreCharacters = false
     
-    private var characters: [RMCharacter] = [] {
+    private var episodes: [RMEpisode] = [] {
         didSet {
-            for character in characters {
-                let viewModel = RMCharacterCollectionViewCellViewModel(
-                    characterName: character.name,
-                    characterStatus: character.status,
-                    characterImageUrl: URL(string: character.image))
+            for episode in episodes {
+                let viewModel = RMCharacterEpisodeCollectionViewCellViewModel(
+                    episodeDataUrl: URL(string: episode.url)
+                
                 if !cellViewModels.contains(viewModel) {
                     cellViewModels.append(viewModel)
                 }
@@ -36,8 +34,7 @@ final class RMCharacterListViewModel: NSObject {
         }
     }
     
-    private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
-    
+    private var cellViewModels: [RMCharacterEpisodeCollectionViewCellViewModel] = []
     private var apiInfo: RMGetAllCharatersResponse.Info? = nil
     
     /// Fetch initial set of characters (20)
@@ -157,6 +154,7 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
 }
 
 // MARK: - ScrollView
+
 extension RMCharacterListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator,
