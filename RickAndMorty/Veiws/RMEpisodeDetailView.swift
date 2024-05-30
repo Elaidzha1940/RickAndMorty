@@ -9,7 +9,13 @@
 
 import UIKit
 
-class RMEpisodeDetailView: UIView {
-
-
+final class RMEpisodeDetailView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Unsupported")
+    }
 }
