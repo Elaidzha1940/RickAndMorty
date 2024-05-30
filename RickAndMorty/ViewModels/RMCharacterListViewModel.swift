@@ -88,7 +88,7 @@ final class RMCharacterListViewModel: NSObject {
                     return IndexPath(row: $0, section: 0)
                 })
                 strongSelf.characters.append(contentsOf: moreResults)
-                            
+                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(
                         with: indexPathToAdd)
@@ -145,7 +145,7 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds
-        let width = (bounds.width-3)
+        let width = (bounds.width-30)/2
         return CGSize(width: width, height: width * 1.5)
     }
     
