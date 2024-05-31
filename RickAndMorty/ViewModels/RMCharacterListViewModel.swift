@@ -12,7 +12,6 @@ import UIKit
 protocol RMCharacterListViewModelDelegate: AnyObject {
     func didLoadInitialCharacters()
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
-    
     func didSelectCharacter(_ character: RMCharacter)
 }
 
@@ -122,6 +121,8 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
         }
         cell.configure(with: cellViewModels[indexPath.row])
         return cell
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -157,25 +158,25 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
 }
 
 // MARK: - ScrollView
+
 extension RMCharacterListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator,
               !isLoadingMoreCharacters,
-              cellViewModels.isEmpty,
+              !cellViewModels.isEmpty,
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString) else {
             return
         }
-        
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] t in
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
-            
+
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
                 self?.fetchAdditionalCharacters(url: url)
             }
-            timer.invalidate()
+            t.invalidate()
         }
     }
 }

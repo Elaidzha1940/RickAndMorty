@@ -15,11 +15,11 @@ protocol RMCharacterListViewDelegate: AnyObject {
         didSelectCharacter character: RMCharacter
     )
 }
-/// View that handels showing list of characters, loader, etc.
+
+/// View that handles showing list of characters, loader, etc.
 final class RMCharacterListView: UIView {
     
     private let viewModel = RMCharacterListViewModel()
-    
     public weak var delegate: RMCharacterListViewDelegate?
     
     private let spinner: UIActivityIndicatorView = {
@@ -37,7 +37,7 @@ final class RMCharacterListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self,
+        collectionView.register(RMCharacterCollectionViewCell.self,
                                 forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         collectionView.register(RMFooterLoadingCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
@@ -51,18 +51,18 @@ final class RMCharacterListView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews(collectionView, spinner)
-        addConstraint()
+        addConstraints()
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchCharacters()
-        setUPCollectionView()
+        setupCollectionView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
     
-    private func addConstraint() {
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.heightAnchor.constraint(equalToConstant: 100),
@@ -76,7 +76,7 @@ final class RMCharacterListView: UIView {
         ])
     }
     
-    private func setUPCollectionView() {
+    private func setupCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
     }
@@ -102,5 +102,3 @@ extension RMCharacterListView: RMCharacterListViewModelDelegate {
         }
     }
 }
-
-
