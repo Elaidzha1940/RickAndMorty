@@ -20,12 +20,14 @@ protocol RMEpisodeListViewModelDelegate: AnyObject {
 final class RMEpisodeListViewModel: NSObject {
     public weak var delegate: RMEpisodeListViewModelDelegate?
     private var isLoadingMoreCharacters = false
+    private let borderColors: [UIColor] = [.systemGray, .systemBrown, .systemMint, .systemTeal, .systemBlue, .systemCyan]
     
     private var episodes: [RMEpisode] = [] {
         didSet {
             for episode in episodes {
                 let viewModel = RMCharacterEpisodeCollectionViewCellViewModel(
-                    episodeDataUrl: URL(string: episode.url))
+                    episodeDataUrl: URL(string: episode.url),
+                    borderColor: borderColors.randomElement() ?? .systemGray)
                 
                 if !cellViewModels.contains(viewModel) {
                     cellViewModels.append(viewModel)

@@ -48,7 +48,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpLayer() {
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 2
     }
     
@@ -73,16 +73,16 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        seasonLabel.text = nil
-        nameLabel.text = nil
+        seasonLabel.text  = nil
+        nameLabel.text    = nil
         airDateLabel.text = nil
     }
     
     public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
         viewModel.registerForData { [weak self] data in
             // Main Queue
-            self?.nameLabel.text = data.name
-            self?.seasonLabel.text = "Episode "+data.episode
+            self?.nameLabel.text    = data.name
+            self?.seasonLabel.text  = "Episode "+data.episode
             self?.airDateLabel.text = "Aired on "+data.air_date
         }
         viewModel.fetchEpisode()

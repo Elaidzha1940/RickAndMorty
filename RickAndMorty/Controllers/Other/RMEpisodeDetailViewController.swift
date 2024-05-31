@@ -13,6 +13,8 @@ import UIKit
 final class RMEpisodeDetailViewController: UIViewController {
     private let viewModel: RMEpisodeDetailViewModel
     
+    private let detailView = RMEpisodeDetailView()
+    
     // MARK: - Init
     
     init(url: URL?) {
@@ -28,7 +30,7 @@ final class RMEpisodeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(detailView)
         title = "Episode"
-        view.backgroundColor = .systemMint
     }
 }
