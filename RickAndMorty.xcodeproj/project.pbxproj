@@ -50,6 +50,7 @@
 		E47D60F82C05E952001453AC /* RMEpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D60F72C05E952001453AC /* RMEpisodeDetailViewController.swift */; };
 		E49772722BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49772712BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift */; };
 		E4AB350B2BF8A5B700BFA6B0 /* RMImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB350A2BF8A5B700BFA6B0 /* RMImageLoader.swift */; };
+		E4E31FB02C0B457400B851EF /* RMSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E31FAF2C0B457400B851EF /* RMSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		E47D60F72C05E952001453AC /* RMEpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		E49772712BF5F837000BA33D /* RMFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		E4AB350A2BF8A5B700BFA6B0 /* RMImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMImageLoader.swift; sourceTree = "<group>"; };
+		E4E31FAF2C0B457400B851EF /* RMSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				E437FD232BD9F15500AF872D /* Veiws */,
-				E437FD242BD9F16600AF872D /* ViewModels */,
 				E437FD262BD9F18000AF872D /* Controllers */,
 				E437FD252BD9F17A00AF872D /* Models */,
 				E437FD272BD9F1A300AF872D /* Managers */,
@@ -254,6 +255,7 @@
 				E437FD332BD9F4CB00AF872D /* RMLocationViewController.swift */,
 				E437FD352BD9F4F100AF872D /* RMEpisodeViewController.swift */,
 				E437FD372BD9F52100AF872D /* RMSettingsViewController.swift */,
+				E437FD242BD9F16600AF872D /* ViewModels */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -294,6 +296,7 @@
 			children = (
 				E457D0AF2BF353F800364C3F /* RMCharacterDetailViewController.swift */,
 				E47D60F72C05E952001453AC /* RMEpisodeDetailViewController.swift */,
+				E4E31FAF2C0B457400B851EF /* RMSearchViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				E4197AE52BFE1C3D00B9AA6E /* RMCharacterPhotoCollectionViewCellViewModel.swift in Sources */,
 				E423A8FF2BDD4DE300599F28 /* RMOrigin.swift in Sources */,
 				E437FD342BD9F4CB00AF872D /* RMLocationViewController.swift in Sources */,
+				E4E31FB02C0B457400B851EF /* RMSearchViewController.swift in Sources */,
 				E4043EE32BE4097E00A4EE3D /* RMCharacterListView.swift in Sources */,
 				E423A9032BDD520D00599F28 /* RMCharacterStatus.swift in Sources */,
 				E423A9052BDD528A00599F28 /* RMCharacterGender.swift in Sources */,

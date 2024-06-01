@@ -1,29 +1,43 @@
+//  /*
 //
-//  RMSearchViewController.swift
-//  RickAndMorty
+//  Project: RickAndMorty
+//  File: RMSearchViewController.swift
+//  Created by: Elaidzha Shchukin
+//  Date: 01.06.2024
 //
-//  Created by Elaidzha Shchukin on 01.06.2024.
-//
+//  */
 
 import UIKit
 
-class RMSearchViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+/// Configure controller to search
+final class RMSearchViewController: UIViewController {
+    
+    struct Config {
+        enum `Type` {
+            case character
+            case episode
+            case location
+        }
+        
+        let type: `Type`
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private let config: Config
+    
+    init(config: Config) {
+        self.config = config
+        super.init(nibName: nil, bundle: nil)
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("Unsupported")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Search"
 
+    }
 }
+
+//https://rickandmortyapi.com/api/character/1,183
