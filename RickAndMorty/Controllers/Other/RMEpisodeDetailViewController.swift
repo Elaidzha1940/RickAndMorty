@@ -10,14 +10,14 @@
 import UIKit
 
 /// VC to show details about single episode
-final class RMEpisodeDetailViewController: UIViewController {
+final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewModelDelegate {
     private let viewModel: RMEpisodeDetailViewModel
     private let detailView = RMEpisodeDetailView()
     
     // MARK: - Init
     
     init(url: URL?) {
-        self.viewModel = .init(endpointUrl: url)
+        self.viewModel = RMEpisodeDetailViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,5 +49,9 @@ final class RMEpisodeDetailViewController: UIViewController {
     @objc
     private func didTapShare() {
         
+    }
+    
+    func didFetchEpisodeDetails() {
+        detailView.configure(with: viewModel)
     }
 }

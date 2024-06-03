@@ -27,11 +27,14 @@ final class RMEpisodeDetailViewModel {
     
     init(endpointUrl: URL?) {
         self.endpointUrl = endpointUrl
-        fetchEpisodeData()
     }
     
+    // MARK: - Public
+    
+    // MARK: - Private
+    
     /// Fetch backing episode model
-    private func fetchEpisodeData() {
+    public func fetchEpisodeData() {
         guard let url = endpointUrl,
               let request = RMRequest(url: url) else {
             return
