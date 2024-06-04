@@ -16,6 +16,7 @@ final class RMEpisodeDetailView: UIView {
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
         return spinner
     }()
     
@@ -25,8 +26,12 @@ final class RMEpisodeDetailView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemTeal
-        self.collectionView = createCollectionView()
+        let collectionView = createCollectionView()
+        addSubviews(collectionView, spinner)
+        self.collectionView = collectionView
         addConstraints()
+        
+        spinner.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -34,8 +39,20 @@ final class RMEpisodeDetailView: UIView {
     }
     
     private func addConstraints() {
+        guard let collectionView = collectionView else {
+            return
+        }
+        
         NSLayoutConstraint.activate([
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
             
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     
@@ -46,6 +63,8 @@ final class RMEpisodeDetailView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isHidden = true
+        collectionView.alpha = 0
         return collectionView
     }
     

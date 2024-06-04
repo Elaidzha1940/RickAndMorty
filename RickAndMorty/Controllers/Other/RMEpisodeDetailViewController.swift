@@ -36,7 +36,7 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
             barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
         
         viewModel.delegate = self
-        viewModel.fetchEpisodeData() 
+        viewModel.fetchEpisodeData()
     }
     
     private func addConsraints() {
