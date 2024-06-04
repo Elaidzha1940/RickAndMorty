@@ -20,7 +20,7 @@ protocol RMEpisodeListViewModelDelegate: AnyObject {
 final class RMEpisodeListViewModel: NSObject {
     public weak var delegate: RMEpisodeListViewModelDelegate?
     private var isLoadingMoreCharacters = false
-    private let borderColors: [UIColor] = [.systemGray, .systemBrown, .systemMint, .systemTeal, .systemBlue, .systemCyan]
+    private let borderColors: [UIColor] = [.systemGray, .systemBrown, .systemMint, .systemGray, .systemBrown, .systemMint]
     
     private var episodes: [RMEpisode] = [] {
         didSet {
@@ -161,7 +161,7 @@ extension RMEpisodeListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator,
               !isLoadingMoreCharacters,
-              cellViewModels.isEmpty,
+              !cellViewModels.isEmpty,
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString) else {
             return

@@ -133,8 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				E437FD232BD9F15500AF872D /* Veiws */,
-				E437FD262BD9F18000AF872D /* Controllers */,
+				E437FD242BD9F16600AF872D /* ViewModels */,
 				E437FD252BD9F17A00AF872D /* Models */,
+				E437FD262BD9F18000AF872D /* Controllers */,
 				E437FD272BD9F1A300AF872D /* Managers */,
 				E437FD282BD9F1CC00AF872D /* APIClient */,
 				E437FD292BD9F1FA00AF872D /* Resources */,
@@ -255,7 +256,6 @@
 				E437FD332BD9F4CB00AF872D /* RMLocationViewController.swift */,
 				E437FD352BD9F4F100AF872D /* RMEpisodeViewController.swift */,
 				E437FD372BD9F52100AF872D /* RMSettingsViewController.swift */,
-				E437FD242BD9F16600AF872D /* ViewModels */,
 			);
 			path = Core;
 			sourceTree = "<group>";
