@@ -15,8 +15,9 @@ protocol RMEpisodeDetailViewModelDelegate: AnyObject {
 
 final class RMEpisodeDetailViewModel {
     private let endpointUrl: URL?
-    private var dataTuple: (RMEpisode, [RMCharacter])? {
+    private var dataTuple: (episode: RMEpisode, sharacters: [RMCharacter])? {
         didSet {
+            createCellViewModels()
             delegate?.didFetchEpisodeDetails()
         }
     }
@@ -24,12 +25,11 @@ final class RMEpisodeDetailViewModel {
     enum SectionType {
         case information(viewModel: [RMEpisodeInfoCollectionViewCellViewModel])
         case characters(viewModel: [RMCharacterCollectionViewCellViewModel])
-        case
     }
     
     public weak var delegate: RMEpisodeDetailViewModelDelegate?
     
-    
+    public private(set) var sections: [SectionType] = []
     
     // MARK: - Init
     
@@ -37,9 +37,16 @@ final class RMEpisodeDetailViewModel {
         self.endpointUrl = endpointUrl
     }
     
-    // MARK: - Public
-    
     // MARK: - Private
+    
+    private func createCellViewModels() {
+        let episode = dataTuple?.episode
+        sections = [
+            .information(viewModel: [
+                .init(title: "", value: "")
+            ])
+        ]
+    }
     
     /// Fetch backing episode model
     public func fetchEpisodeData() {
