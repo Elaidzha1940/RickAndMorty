@@ -21,7 +21,15 @@ final class RMEpisodeDetailViewModel {
         }
     }
     
+    enum SectionType {
+        case information(viewModel: [RMEpisodeInfoCollectionViewCellViewModel])
+        case characters(viewModel: [RMCharacterCollectionViewCellViewModel])
+        case
+    }
+    
     public weak var delegate: RMEpisodeDetailViewModelDelegate?
+    
+    
     
     // MARK: - Init
     
