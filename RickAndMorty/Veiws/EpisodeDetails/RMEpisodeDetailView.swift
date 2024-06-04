@@ -84,7 +84,10 @@ final class RMEpisodeDetailView: UIView {
         collectionView.alpha = 0
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMEpisodeInfoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: RMEpisodeInfoCollectionViewCell.cellIdentifier)
+        collectionView.register(RMCharacterCollectionViewCell.self,
+                                forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }
     
@@ -132,9 +135,32 @@ extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .brown
-        return cell
+        
+        guard let sections = viewModel?.cellViewModels else {
+            fatalError("No viewModel")
+        }
+        let sectionType = sections[indexPath.section]
+        
+        switch sectionType {
+        case .information(let viewModels):
+            let celViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RMEpisodeInfoCollectionViewCell.cellIdentifier,
+                for: indexPath) as? RMEpisodeInfoCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: celViewModel)
+            return cell
+        case .characters(let viewModels):
+            let celViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier,
+                for: indexPath) as? RMCharacterCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: celViewModel)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
