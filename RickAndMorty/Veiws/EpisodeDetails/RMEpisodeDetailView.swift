@@ -17,7 +17,7 @@ protocol RMEpisodeDetailViewDelegate: AnyObject {
 }
 
 final class RMEpisodeDetailView: UIView {
-    
+
     public weak var delegate: RMEpisodeDetailViewDelegate?
     
     private var viewModel: RMEpisodeDetailViewModel? {
@@ -160,7 +160,7 @@ extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
            break
         case .characters:
             guard let character = viewModel.character(at: indexPath.row) else {
-                return 
+                return
             }
             delegate?.rmEpisodeDetailView(self, didSelect: character)
         }

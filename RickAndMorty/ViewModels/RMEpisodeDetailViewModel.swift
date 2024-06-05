@@ -37,7 +37,7 @@ final class RMEpisodeDetailViewModel {
         self.endpointUrl = endpointUrl
     }
     
-    public func character(at index: Int) -> RMCharacter {
+    public func character(at index: Int) -> RMCharacter? {
         guard let dataTuple = dataTuple else {
             return nil
         }

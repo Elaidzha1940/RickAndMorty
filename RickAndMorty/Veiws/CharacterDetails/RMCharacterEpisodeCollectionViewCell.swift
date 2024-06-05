@@ -15,7 +15,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     private let seasonLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
     
@@ -37,7 +37,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .tertiarySystemBackground
         setUpLayer()
         contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
         setUpConstraints()
@@ -73,20 +73,21 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        seasonLabel.text  = nil
-        nameLabel.text    = nil
+        seasonLabel.text = nil
+        nameLabel.text = nil
         airDateLabel.text = nil
     }
-    
+
     public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
         viewModel.registerForData { [weak self] data in
             // Main Queue
-            self?.nameLabel.text    = data.name
-            self?.seasonLabel.text  = "Episode "+data.episode
+            self?.nameLabel.text = data.name
+            self?.seasonLabel.text = "Episode "+data.episode
             self?.airDateLabel.text = "Aired on "+data.air_date
         }
         viewModel.fetchEpisode()
         contentView.layer.borderColor = viewModel.borderColor.cgColor
     }
 }
+
 
