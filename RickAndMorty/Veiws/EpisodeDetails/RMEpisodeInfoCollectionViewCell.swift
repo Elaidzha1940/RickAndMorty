@@ -60,9 +60,6 @@ final class RMEpisodeInfoCollectionViewCell: UICollectionViewCell {
             titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.47),
             valueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.47),
         ])
-        
-        titleLabel.backgroundColor = .yellow
-        valueLabel.backgroundColor = .systemMint
     }
     
     override func prepareForReuse() {

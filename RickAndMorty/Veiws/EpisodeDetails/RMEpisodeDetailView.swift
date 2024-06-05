@@ -173,7 +173,7 @@ extension RMEpisodeDetailView {
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(100)), subitems: [item])
+            heightDimension: .fractionalHeight(80)), subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         
@@ -194,8 +194,7 @@ extension RMEpisodeDetailView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(260)),
-            subitems: [item, item])
+                heightDimension: .absolute(260)), subitems: [item, item])
         
         let section = NSCollectionLayoutSection(group: group)
         return section
