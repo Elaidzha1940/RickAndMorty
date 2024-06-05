@@ -37,6 +37,13 @@ final class RMEpisodeDetailViewModel {
         self.endpointUrl = endpointUrl
     }
     
+    public func character(at index: Int) -> RMCharacter {
+        guard let dataTuple = dataTuple else {
+            return nil
+        }
+        return dataTuple.characters[index]
+    }
+    
     // MARK: - Private
     
     private func createCellViewModels() {

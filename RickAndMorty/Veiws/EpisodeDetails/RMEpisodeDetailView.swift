@@ -18,6 +18,8 @@ protocol RMEpisodeDetailViewDelegate: AnyObject {
 
 final class RMEpisodeDetailView: UIView {
     
+    public weak var delegate: RMEpisodeDetailViewDelegate?
+    
     private var viewModel: RMEpisodeDetailViewModel? {
         didSet {
             spinner.stopAnimating()
@@ -125,28 +127,43 @@ extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
         
         switch sectionType {
         case .information(let viewModels):
-            let celViewModel = viewModels[indexPath.row]
+            let cellViewModel = viewModels[indexPath.row]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RMEpisodeInfoCollectionViewCell.cellIdentifier,
                 for: indexPath) as? RMEpisodeInfoCollectionViewCell else {
                 fatalError()
             }
-            cell.configure(with: celViewModel)
+            cell.configure(with: cellViewModel)
             return cell
         case .characters(let viewModels):
-            let celViewModel = viewModels[indexPath.row]
+            let cellViewModel = viewModels[indexPath.row]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier,
                 for: indexPath) as? RMCharacterCollectionViewCell else {
                 fatalError()
             }
-            cell.configure(with: celViewModel)
+            cell.configure(with: cellViewModel)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        guard let viewModel = viewModel else {
+            return
+        }
+        let sections = viewModel.cellViewModels
+        let sectionType = sections[indexPath.section]
+        
+        switch sectionType {
+        case .information:
+           break
+        case .characters:
+            guard let character = viewModel.character(at: indexPath.row) else {
+                return 
+            }
+            delegate?.rmEpisodeDetailView(self, didSelect: character)
+        }
     }
 }
 
