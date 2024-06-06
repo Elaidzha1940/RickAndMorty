@@ -31,18 +31,33 @@ enum RMSettingsOption: CaseIterable {
         }
     }
     
+    var iconContainerColor: UIColor {
+        switch self {
+        case .rateApp:
+            return .systemMint
+        case .contactUs:
+            return .systemMint
+        case .terms:
+            return .systemMint
+        case .privacy:
+            return .systemMint
+        case .apiReference:
+            return .systemMint 
+        }
+    }
+    
     var iconImage: UIImage? {
         switch self {
         case .rateApp:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "star.fill")
         case .contactUs:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "paperplane.fill")
         case .terms:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "doc.fill")
         case .privacy:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "lock.fill")
         case .apiReference:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "list.clipboard")
         }
     }
 }
