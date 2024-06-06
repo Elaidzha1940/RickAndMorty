@@ -10,6 +10,16 @@
 import UIKit
 
 struct RMSettingsCellViewModel {
-    let image: UIImage?
-    let title: String
+    public var image: UIImage? {
+        return type.iconImage
+    }
+    public var title: String {
+        return type.displayTitle
+    }
+    
+    private let type: RMSettingsOption
+    
+    init(type: RMSettingsOption) {
+        self.type = type
+    }
 }
