@@ -9,7 +9,19 @@
 
 import UIKit
 
-struct RMSettingsCellViewModel {
+struct RMSettingsCellViewModel: Identifiable, Hashable {
+    let id = UUID()
+    
+    private let type: RMSettingsOption
+    
+    // MARK: - Init
+    
+    init(type: RMSettingsOption) {
+        self.type = type
+    }
+    
+    // MARK: - Public
+    
     public var image: UIImage? {
         return type.iconImage
     }
@@ -17,9 +29,7 @@ struct RMSettingsCellViewModel {
         return type.displayTitle
     }
     
-    private let type: RMSettingsOption
-    
-    init(type: RMSettingsOption) {
-        self.type = type
+    public var iconContainerColor: UIColor {
+        return type.iconContainerColor
     }
 }
