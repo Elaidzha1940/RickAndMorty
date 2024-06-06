@@ -34,15 +34,15 @@ enum RMSettingsOption: CaseIterable {
     var iconContainerColor: UIColor {
         switch self {
         case .rateApp:
-            return .systemMint
+            return .systemGray
         case .contactUs:
-            return .systemMint
+            return .systemGray
         case .terms:
-            return .systemMint
+            return .systemGray
         case .privacy:
-            return .systemMint
+            return .systemGray
         case .apiReference:
-            return .systemMint 
+            return .systemGray
         }
     }
     
