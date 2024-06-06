@@ -17,10 +17,26 @@ struct RMSettingsView: View {
     }
     
     var body: some View {
-        ScrollView(.vertical) {
+        VStack {
             List(viewModel.cellViewModel) { viewModel in
-                Text(viewModel.title)
+                HStack {
+                    if let image = viewModel.image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25)
+                            .foregroundStyle(.red, .green)
+                            .padding(2.5)
+                            .background(Color(viewModel.iconContainerColor))
+                            .cornerRadius(10)
+                            
+                    }
+                    Text(viewModel.title)
+                        .padding(.leading, 10)
+                }
+                .padding()
             }
+    
         }
     }
 }
