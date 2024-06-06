@@ -34,5 +34,4 @@ The app has five key area
 
 -----
 
-Testing & Notes
 -----
