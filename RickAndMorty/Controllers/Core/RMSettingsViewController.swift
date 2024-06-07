@@ -59,7 +59,9 @@ final class RMSettingsViewController: UIViewController {
             
         } else if option == .rateApp {
             // Show rating prompt
-            
+            if let windowScene = view.window?.windowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
         }
     }
 }
