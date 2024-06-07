@@ -16,6 +16,21 @@ enum RMSettingsOption: CaseIterable {
     case privacy
     case apiReference
     
+    var targetUrl: URL? {
+        switch self {
+        case .rateApp:
+            return nil
+        case .contactUs:
+            return URL(string: "https://www.apple.com/")
+        case .terms:
+            return URL(string: "https://www.apple.com/terms")
+        case .privacy:
+            return URL(string: "https://www.apple.com/privacy")
+        case .apiReference:
+            return URL(string: "https://rickandmortyapi.com/")
+        }
+    }
+    
     var displayTitle: String {
         switch self {
         case .rateApp:
