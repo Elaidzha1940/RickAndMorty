@@ -36,6 +36,9 @@ struct RMSettingsView: View {
                         .padding(.leading, 10)
                 }
                 .padding(2)
+                .onTapGesture {
+                    viewModel.onTapHandler(viewModel.type)
+                }
             }
         }
     }
@@ -43,6 +46,8 @@ struct RMSettingsView: View {
 
 #Preview {
     RMSettingsView(viewModel: .init(cellViewModel: RMSettingsOption.allCases.compactMap({
-        return RMSettingsCellViewModel(type: $0)
+        return RMSettingsCellViewModel(type: $0) { option in
+            
+        }
     })))
 }

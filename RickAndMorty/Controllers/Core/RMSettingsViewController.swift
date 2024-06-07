@@ -13,11 +13,7 @@ import UIKit
 /// Controller to show various options and settings
 final class RMSettingsViewController: UIViewController {
     
-    private let settingsSwiftUIController = UIHostingController(
-        rootView: RMSettingsView(viewModel: RMSettingsViewModel(
-            cellViewModel: RMSettingsOption.allCases.compactMap({
-                return RMSettingsCellViewModel(type: $0)
-            }))))
+    private var settingsSwiftUIController: UIHostingController<RMSettingsView>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +23,13 @@ final class RMSettingsViewController: UIViewController {
     }
     
     private func addSwiftUIController() {
+       let settingsSwiftUIController = UIHostingController(
+            rootView: RMSettingsView(viewModel: RMSettingsViewModel(
+                cellViewModel: RMSettingsOption.allCases.compactMap({
+                    return RMSettingsCellViewModel(type: $0) { option in
+                        print(option.displayTitle)
+                    }
+                }))))
         addChild(settingsSwiftUIController)
         settingsSwiftUIController.didMove(toParent: self)
         
@@ -39,6 +42,7 @@ final class RMSettingsViewController: UIViewController {
             settingsSwiftUIController.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             settingsSwiftUIController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+        self.settingsSwiftUIController = settingsSwiftUIController
     }
 }
 
