@@ -34,8 +34,6 @@ struct RMSettingsView: View {
                     }
                     Text(viewModel.title)
                         .padding(.leading, 10)
-                    
-//                    Spacer()
                 }
                 .padding(2)
                 .onTapGesture {

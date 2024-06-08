@@ -31,7 +31,7 @@ final class RMLocationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemPink
+        backgroundColor = .systemBackground
         addSubviews(tableView, spinner)
         spinner.startAnimating()
         addConstraints()
