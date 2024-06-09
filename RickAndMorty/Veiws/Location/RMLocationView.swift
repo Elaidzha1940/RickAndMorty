@@ -11,6 +11,17 @@ import UIKit
 
 final class RMLocationView: UIView {
     
+    private var viewModel: RMLocationViewModel? {
+        didSet {
+            spinner.stopAnimating()
+            tableView.isHidden = false
+            tableView.reloadData()
+            UIView.animate(withDuration: 0.3) {
+                self.tableView.alpha = 1
+            }
+        }
+    }
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +52,8 @@ final class RMLocationView: UIView {
         fatalError()
     }
     
-    private func addConstraints() {
+    private func addConstraints() {    
+        
         NSLayoutConstraint.activate([
             spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.widthAnchor.constraint(equalToConstant: 100),
@@ -53,5 +65,9 @@ final class RMLocationView: UIView {
             tableView.rightAnchor.constraint(equalTo: rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    public func configure(with viewModel: RMLocationViewModel) {
+        self.viewModel = viewModel
     }
 }

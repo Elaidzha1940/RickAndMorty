@@ -46,8 +46,3 @@ final class RMLocationViewController: UIViewController {
         
     }
 }
-
-
-//override func loadView() {
-//    view = RMLocationView()
-//}
