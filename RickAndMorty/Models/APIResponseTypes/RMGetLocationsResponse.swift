@@ -18,5 +18,5 @@ struct RMGetLocationsResponse: Codable {
     }
     
     let info: Info
-    let results: [RMEpisode]
+    let results: [RMLocation]
 }

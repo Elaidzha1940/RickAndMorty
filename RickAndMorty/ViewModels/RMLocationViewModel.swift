@@ -21,16 +21,22 @@ final class RMLocationViewModel {
     // Location response info
     // Will contain next url, if present
     
+    private var apiInfo: RMGetLocationsResponse.Info?
+    
     private var cellViewModels: [String] = []
     
     init() {}
     
     public func fetchLocations() {
-        RMService.shared.execute(.listLocationsRequest, expecting: String.self) { [weak self] result in
+        RMService.shared.execute(.listLocationsRequest, expecting: RMGetLocationsResponse.self) { [weak self] result in
             switch result {
-            case .success(_):
-                self?.delegate?.didFetchInitialLocations()
-            case .failure(_):
+            case .success(let model):
+                self?.apiInfo = model.info
+                self?.locations = model.results
+                DispatchQueue.main.async {
+                    self?.delegate?.didFetchInitialLocations()
+                }
+            case .failure(let error):
                 break
             }
         }
