@@ -16,14 +16,21 @@ protocol RMLocationViewModelDelegate: AnyObject {
 final class RMLocationViewModel {
     weak var delegate: RMLocationViewModelDelegate?
     
-    private var locations: [RMLocation] = []
+    private var locations: [RMLocation] = [] {
+        didSet {
+            for location in locations {
+                let cellViewModel = RMLocationTableViewCellViewModel()
+                cellViewModels.append(cellViewModel)
+            }
+        }
+    }
     
     // Location response info
     // Will contain next url, if present
     
     private var apiInfo: RMGetLocationsResponse.Info?
     
-    private var cellViewModels: [String] = []
+    public private(set) var cellViewModels: [RMLocationTableViewCellViewModel] = []
     
     init() {}
     
