@@ -16,5 +16,15 @@ struct RMLocationTableViewCellViewModel {
         self.location = location
     }
     
-    public name 
+    public var name: String {
+         return location.name
+    }
+    
+    public var type: String {
+         return location.type
+    }
+    
+    public var dimension: String {
+        return location.dimension
+    }
 }
