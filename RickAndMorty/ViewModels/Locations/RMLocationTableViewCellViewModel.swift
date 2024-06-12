@@ -10,5 +10,11 @@
 import Foundation
 
 struct RMLocationTableViewCellViewModel {
+    private let location: RMLocation
     
+    init(location: RMLocation) {
+        self.location = location
+    }
+    
+    public name 
 }
