@@ -9,7 +9,8 @@
 
 import Foundation
 
-struct RMLocationTableViewCellViewModel {
+struct RMLocationTableViewCellViewModel: Hashable, Equatable {
+    
     private let location: RMLocation
     
     init(location: RMLocation) {
@@ -26,5 +27,16 @@ struct RMLocationTableViewCellViewModel {
     
     public var dimension: String {
         return location.dimension
+    }
+    
+    static func == (lhs: RMLocationTableViewCellViewModel, rhs: RMLocationTableViewCellViewModel) -> Bool {
+        return lhs.location.id == rhs.location.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(location.id)
+        hasher.combine(name)
+        hasher.combine(type)
+        hasher.combine(dimension)
     }
 }
