@@ -97,7 +97,8 @@ extension RMLocationView: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RMLocationTableViewCell.cellIdentifier, for: indexPath) as? RMLocationTableViewCell else {
             fatalError()
         }
-        cell.textLabel?.text
+        let cellViewModel = cellViewModels[indexPath.row]
+        cell.textLabel?.text = cellViewModel.name
         return cell
     }
 }
