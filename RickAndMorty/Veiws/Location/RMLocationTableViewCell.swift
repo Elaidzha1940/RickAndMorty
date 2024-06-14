@@ -14,7 +14,7 @@ final class RMLocationTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemGray
+        contentView.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
