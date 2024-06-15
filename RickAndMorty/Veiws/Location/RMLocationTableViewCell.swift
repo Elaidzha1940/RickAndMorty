@@ -61,7 +61,7 @@ final class RMLocationTableViewCell: UITableViewCell {
             dimensionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
         ])
         
-        // 
+        //
     }
     
     override func prepareForReuse() {
