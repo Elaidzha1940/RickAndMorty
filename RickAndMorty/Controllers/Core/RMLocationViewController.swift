@@ -51,7 +51,9 @@ final class RMLocationViewController: UIViewController, RMLocationViewModelDeleg
     // MARK: - RMLocationViewDelegate
     
     func rmLocationView(_ locationView: RMLocationView, didSelect location: RMLocation) {
-        <#code#>
+        let vc = RMLocationDetailViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - LocationViewModel Delegate
