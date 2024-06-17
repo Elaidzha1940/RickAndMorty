@@ -53,7 +53,7 @@ final class RMLocationViewModel {
                 DispatchQueue.main.async {
                     self?.delegate?.didFetchInitialLocations()
                 }
-                // Изменение 
+                // Изменение
             case .failure(_):
                 break
             }
