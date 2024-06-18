@@ -1,14 +1,16 @@
 //  /*
 //
 //  Project: RickAndMorty
-//  File: RMNoSearchResultsViewModel.swift
+//  File: RMSearchInputViewModel.swift
 //  Created by: Elaidzha Shchukin
 //  Date: 18.06.2024
 //
 //  */
-
+  
 import Foundation
 
-struct RMNoSearchResultsViewModel {
-    
+final class RMSearchInputViewModel {
+    init() {
+        
+    }
 }
