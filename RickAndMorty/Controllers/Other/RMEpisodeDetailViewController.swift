@@ -10,7 +10,11 @@
 import UIKit
 
 /// VC to show details about single episode
-final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewModelDelegate, RMEpisodeDetailViewDelegate {
+final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewModelDelegate, RMEpisodeDetailViewDelegate, RMLocationDetailViewDelegate {
+    func rmEpisodeDetailView(_ detailView: RMEpisodeDetailView, didSelect character: RMCharacter) {
+        <#code#>
+    }
+    
     private let viewModel: RMEpisodeDetailViewModel
     private let detailView = RMLocationDetailView()
     
