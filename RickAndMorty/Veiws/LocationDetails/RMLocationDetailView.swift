@@ -174,18 +174,19 @@ extension RMLocationDetailView: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension RMLocationDetailView {
-    func layout(for section: Int) -> NSCollectionLayoutSection {
-        guard let sections = viewModel?.cellViewModels else {
-            return createInfoLayout()
-        }
-
-        switch sections[section] {
-        case .information:
-            return createInfoLayout()
-        case .characters:
-            return createCharacterLayout()
-        }
-    }
+//    func layout(for section: Int) -> NSCollectionLayoutSection {
+//        guard let sections = viewModel?.cellViewModels else {
+//            return createInfoLayout()
+//        }
+//
+//        switch sections[section] {
+//        case .information:
+//            return createInfoLayout()
+//        case .characters:
+//            break
+//           // return createCharacterLayout()
+//        }
+//    }
 
     func createInfoLayout() -> NSCollectionLayoutSection {
 
@@ -207,28 +208,32 @@ extension RMLocationDetailView {
         return section
     }
 
-    func createCharacterLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.5 : 0.25),
-                heightDimension: .fractionalHeight(1.0)
-            )
-        )
-        item.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
-            leading: 10,
-            bottom: 5,
-            trailing: 10
-        )
+//    func createCharacterLayout() -> NSCollectionLayoutSection {
+//        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
+//        
+//        let item = NSCollectionLayoutItem(
+//            layoutSize: NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(isPhone ? 0.5 : 0.25),
+//                heightDimension: .fractionalHeight(1.0)
+//            )
+//        )
+//        item.contentInsets = NSDirectionalEdgeInsets(
+//            top: 5,
+//            leading: 10,
+//            bottom: 5,
+//            trailing: 10
+//        )
+//
+//        let group = NSCollectionLayoutGroup.horizontal(
+//            layoutSize: NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(1.0),
+//                heightDimension: .absolute(isPhone ? 260 : 320)
+//            ),
+//            subitems: isPhone ? [item, item] : [item, item, item, item]
+//        )
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        return section
+//    }
 
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize:  NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(UIDevice.isiPhone ? 260 : 320)
-            ),
-            subitems: UIDevice.isiPhone ? [item, item] : [item, item, item, item]
-        )
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
 }
