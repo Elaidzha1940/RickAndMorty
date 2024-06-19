@@ -7,8 +7,9 @@
 //
 //  */
 
-import Foundation
+import UIKit
 
 struct RMNoSearchResultsViewModel {
-    
+    let title = "No Results"
+    let image = UIImage(systemName: "magnifyingglass.circle")
 }

@@ -12,7 +12,7 @@ import Foundation
 // Responsibilities
 // - show search results
 // - show no results view
-// - kick off API requests 
+// - kick off API requests
 
 final class RMSearchViewModel {
     let config: RMSearchViewController.Config
