@@ -40,7 +40,7 @@ final class RMSearchInputView: UIView {
         ])
     }
     
-    public func configure(with viewModel: RMSearchInputView) {
+    public func configure(with viewModel: RMSearchInputViewModel) {
         
     }
 }
