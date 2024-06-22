@@ -20,7 +20,7 @@ final class RMSearchInputView: UIView {
     
     private var viewModel: RMSearchInputViewModel? {
         didSet {
-            guard let viewModel = viewModel, viewModel.hasDynamicOptions self {
+            guard let viewModel = viewModel, viewModel.hasDynamicOptions == true else {
                 return
             }
             let options = viewModel.options
@@ -59,5 +59,9 @@ final class RMSearchInputView: UIView {
     public func configure(with viewModel: RMSearchInputViewModel) {
         searchBar.placeholder = viewModel.searchPlaceholderText
         self.viewModel = viewModel
+    }
+    
+    public func presentKeyboard() {
+        searchBar.becomeFirstResponder()
     }
 }
