@@ -13,8 +13,6 @@ final class RMSearchView: UIView {
     private let viewModel: RMSearchViewModel
     
     // MARK: - Subviews
-    
-    // SearchInputView(bar, selection buttons)
     private let searchInputView = RMSearchInputView()
     
     private let noResultsView = RMNoSearchResultsView()
@@ -29,6 +27,8 @@ final class RMSearchView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews(noResultsView, searchInputView)
         addConstraints()
+        
+        searchInputView.configure(with: RMSearchInputViewModel(type: viewModel.config.type))
     }
     
     required init?(coder: NSCoder) {

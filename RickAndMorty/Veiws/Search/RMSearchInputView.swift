@@ -52,12 +52,12 @@ final class RMSearchInputView: UIView {
     
     private func createOptionSelectionViews(options: [RMSearchInputViewModel.DynamicOption]) {
         for option in options {
-            //
+            print(option.rawValue)
         }
     }
     
     public func configure(with viewModel: RMSearchInputViewModel) {
         searchBar.placeholder = viewModel.searchPlaceholderText
-        
+        self.viewModel = viewModel
     }
 }
