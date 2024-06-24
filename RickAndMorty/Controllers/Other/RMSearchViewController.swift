@@ -88,6 +88,8 @@ final class RMSearchViewController: UIViewController {
     }
 }
 
+// MARK: - RMSearchViewDelegate
+
 extension RMSearchViewController: RMSearchViewDelegate {
     func rmSearchView(_ searchView: RMSearchView, didSelectOption option: RMSearchInputViewModel.DynamicOption) {
         print("Should present option picker")
