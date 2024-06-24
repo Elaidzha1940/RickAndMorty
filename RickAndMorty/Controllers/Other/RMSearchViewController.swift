@@ -65,6 +65,7 @@ final class RMSearchViewController: UIViewController {
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(didTapExecuteSearch))
+        searchView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,4 +88,10 @@ final class RMSearchViewController: UIViewController {
     }
 }
 
-//https://rickandmortyapi.com/api/character/1,183
+extension RMSearchViewController: RMSearchViewDelegate {
+    func rmSearchView(_ searchView: RMSearchView, didSelectOption option: RMSearchInputViewModel.DynamicOption) {
+        print("Should present option picker")
+    }
+}
+
+// https://rickandmortyapi.com/api/character/1,183
