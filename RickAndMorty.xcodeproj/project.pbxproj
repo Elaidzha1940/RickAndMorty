@@ -363,9 +363,8 @@
 			children = (
 				E457D0AF2BF353F800364C3F /* RMCharacterDetailViewController.swift */,
 				E47D60F72C05E952001453AC /* RMEpisodeDetailViewController.swift */,
-				E4E31FAF2C0B457400B851EF /* RMSearchViewController.swift */,
 				E4458FBE2C1F2B0600DD5A5F /* RMLocationDetailViewController.swift */,
-				E4C027B02C29E61F005CA86B /* RMSearchOptionPickerViewController.swift */,
+				E4C027B22C29E7B2005CA86B /* Search */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -398,6 +397,15 @@
 				E4A8BCD62C10CFD40008ADA0 /* RMSettingsOption.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		E4C027B22C29E7B2005CA86B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E4E31FAF2C0B457400B851EF /* RMSearchViewController.swift */,
+				E4C027B02C29E61F005CA86B /* RMSearchOptionPickerViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		E4DEA9902C11DEBD00BD8ED8 /* SwiftUI */ = {
