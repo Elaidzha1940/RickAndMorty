@@ -55,6 +55,7 @@ final class RMSearchInputView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.spacing = 6
         stackView.distribution = .fillEqually
         stackView.alignment = .center
         addSubview(stackView)
@@ -74,14 +75,25 @@ final class RMSearchInputView: UIView {
         
         for x in 0..<options.count {
             let option = options[x]
-            let button = UIButton()
-            button.setTitle(option.rawValue, for: .normal)
-            button.backgroundColor = .systemCyan
-            button.setTitleColor(.label, for: .normal)
-            button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
-            button.tag = x
+            let button = createButton(with: option, tag: x)
             stackView.addArrangedSubview(button)
         }
+    }
+    
+    private func createButton(with option: RMSearchInputViewModel.DynamicOption, tag: Int) -> UIButton {
+        let button = UIButton()
+        button.setAttributedTitle(NSAttributedString(
+            string: option.rawValue,
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+                .foregroundColor: UIColor.label
+            ]), for: .normal)
+        button.backgroundColor = .secondarySystemBackground
+        button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
+        button.tag = tag
+        button.layer.cornerRadius = 10
+        
+        return button
     }
     
     @objc
