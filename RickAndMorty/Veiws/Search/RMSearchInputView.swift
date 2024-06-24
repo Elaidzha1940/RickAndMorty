@@ -9,7 +9,12 @@
 
 import UIKit
 
+protocol RMSearchInputViewDelegate: AnyObject {
+    func rmSearchInputView(_ inputView: RMSearchInputView, didSelectOption option: RMSearchInputViewModel.DynamicOption)
+}
+
 final class RMSearchInputView: UIView {
+    weak var delegate: RMSearchInputViewDelegate?
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -103,8 +108,7 @@ final class RMSearchInputView: UIView {
         }
         let tag = sender.tag
         let selected = options[tag]
-        
-        print("Did tap \(selected.rawValue)")
+        delegate?.rmSearchInputView(self, didSelectOption: selected)
     }
     
     // MARK: - Public
