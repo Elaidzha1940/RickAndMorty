@@ -33,6 +33,8 @@ final class RMSearchInputView: UIView {
         }
     }
     
+    private var stackView: UIStackView?
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,7 +79,7 @@ final class RMSearchInputView: UIView {
     
     private func createOptionSelectionViews(options: [RMSearchInputViewModel.DynamicOption]) {
         let stackView = createOptionStackView()
-        
+        self.stackView = stackView
         for x in 0..<options.count {
             let option = options[x]
             let button = createButton(with: option, tag: x)
@@ -119,5 +121,13 @@ final class RMSearchInputView: UIView {
     
     public func presentKeyboard() {
         searchBar.becomeFirstResponder()
+    }
+    
+    public func update(option: RMSearchInputViewModel.DynamicOption, value: String) {
+        // Update options
+        guard let buttons = stackView?.arrangedSubviews else {
+            return
+        }
+        
     }
 }

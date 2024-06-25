@@ -17,6 +17,8 @@ import Foundation
 final class RMSearchViewModel {
     let config: RMSearchViewController.Config
     
+    private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
+    
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
     
     // MARK: - Init
@@ -29,5 +31,11 @@ final class RMSearchViewModel {
     
     public func set(value: String, for option: RMSearchInputViewModel.DynamicOption) {
         optionMap[option] = value
+        let tuple = (option, value)
+        optionMapUpdateBlock?(tuple)
+    }
+    
+    public func registerOptionChangeBlock(_ block: @escaping ((RMSearchInputViewModel.DynamicOption, String)) -> ()) {
+        self.optionMapUpdateBlock = block
     }
 }
