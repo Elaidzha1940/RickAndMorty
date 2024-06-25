@@ -24,7 +24,7 @@ final class RMSearchInputViewModel {
             case .gender:
                 return ["male", "female", "genderless", "unknown"]
             case .locationType:
-                return []
+                return ["cluster", "planet", "microverse"]
             }
         }
     }

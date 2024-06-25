@@ -11,6 +11,7 @@ import UIKit
 
 final class RMSearchOptionPickerViewController: UIViewController {
     private let option: RMSearchInputViewModel.DynamicOption
+    private let selectionBlock: ((String) -> Void)
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -21,8 +22,9 @@ final class RMSearchOptionPickerViewController: UIViewController {
     
     // MARK: - Init
     
-    init(option: RMSearchInputViewModel.DynamicOption) {
+    init(option: RMSearchInputViewModel.DynamicOption, selection: @escaping (String) -> Void) {
         self.option = option
+        self.selectionBlock = selection
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,17 +56,21 @@ final class RMSearchOptionPickerViewController: UIViewController {
 
 extension RMSearchOptionPickerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return option.choices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let choice = option.choices[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Hooooooooo!"
+        cell.textLabel?.text = choice.uppercased()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let choice = option.choices[indexPath.row]
+        self.selectionBlock(choice)
+        dismiss(animated: true)
     }
 }
 
