@@ -125,9 +125,12 @@ final class RMSearchInputView: UIView {
     
     public func update(option: RMSearchInputViewModel.DynamicOption, value: String) {
         // Update options
-        guard let buttons = stackView?.arrangedSubviews else {
+        guard let buttons = stackView?.arrangedSubviews as? [UIButton],
+              let allOptions = viewModel?.options,
+              let index = allOptions.firstIndex(of: option) else {
             return
         }
         
+        let button: UIButton = buttons[index]
     }
 }
