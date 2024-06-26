@@ -33,5 +33,4 @@ The app has five key area
 - Search
 
 -----
-
------
+=====
