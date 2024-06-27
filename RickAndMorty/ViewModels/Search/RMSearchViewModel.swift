@@ -32,12 +32,49 @@ final class RMSearchViewModel {
     
     public func executeSearch() {
         // Create Request based on filters
+        // &status=alive
+        
+        switch config.type {
+        case .character:
+            searchText = "Rick"
+            var urlString = "https://rickandmortyapi.com/api/character/?"
+            urlString += "?name=\(searchText)"
+            
+            for (option, value) in optionMap {
+                urlString += "&\(option.queryArgument)=\(value)"
+            }
+            
+            guard let url = URL(string: urlString) else {
+                return
+            }
+            
+            guard let request = RMRequest(url: url) else {
+                return
+            }
+            
+            RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { result in
+                switch result {
+                case .success(let model):
+                    print("Search results found: \(model.results.count)")
+                case .failure:
+                    break
+                }
+            }
+                    
+        case .episode:
+            break
+        case .location:
+            break
+        }
+        
         // Send API Call
+        
+        
         // Notify view of results, no results, or error
     }
     
     public func set(query text: String) {
-        self.searchText = text 
+        self.searchText = text
     }
     
     public func set(value: String, for option: RMSearchInputViewModel.DynamicOption) {
