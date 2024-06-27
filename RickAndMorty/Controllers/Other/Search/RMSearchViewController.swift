@@ -42,6 +42,7 @@ final class RMSearchViewController: UIViewController {
     private let searchView: RMSearchView
     
     // MARK: - Init
+    
     init(config: Config) {
         let viewModel = RMSearchViewModel(config: config)
         self.viewModel = viewModel
@@ -75,7 +76,7 @@ final class RMSearchViewController: UIViewController {
     
     @objc
     private func didTapExecuteSearch() {
-        //        viewModel.executeSearch
+        viewModel.executeSearch()
     }
     
     private func addConstraints() {
