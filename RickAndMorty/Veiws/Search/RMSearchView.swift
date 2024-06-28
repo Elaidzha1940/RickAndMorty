@@ -16,13 +16,11 @@ protocol RMSearchViewDelegate: AnyObject {
 final class RMSearchView: UIView {
     
     weak var delegate: RMSearchViewDelegate?
-    
     private let viewModel: RMSearchViewModel
     
     // MARK: - Subviews
     
     private let searchInputView = RMSearchInputView()
-    
     private let noResultsView = RMNoSearchResultsView()
     
     // Results collectionView
@@ -94,5 +92,13 @@ extension RMSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
 extension RMSearchView: RMSearchInputViewDelegate {
     func rmSearchInputView(_ inputView: RMSearchInputView, didSelectOption option: RMSearchInputViewModel.DynamicOption) {
         delegate?.rmSearchView(self, didSelectOption: option)
+    }
+    
+    func rmSearchInputView(_ inputView: RMSearchInputView, didChangeSearchText text: String?) {
+        viewModel.set(query: text ?? "")
+    }
+    
+    func rmSearchInputViewDidTapSearchKeyboardButton(_ inputView: RMSearchInputView) {
+        viewModel.executeSearch()
     }
 }
