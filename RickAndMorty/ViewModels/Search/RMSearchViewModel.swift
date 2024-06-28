@@ -18,9 +18,8 @@ final class RMSearchViewModel {
     let config: RMSearchViewController.Config
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
     private var searchText = ""
-    
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
-    
+    private var searchResultHandler: (() -> ())?
     
     // MARK: - Init
     
@@ -30,47 +29,41 @@ final class RMSearchViewModel {
     
     // MARK: - Public
     
+    public func registerSearchResultHandler(_ block: @escaping () -> ()) {
+        self.searchResultHandler = block
+    }
+    
     public func executeSearch() {
-        // Create Request based on filters
-        // &status=alive
+        // Test search text
+        searchText = "Rick"
         
-        switch config.type {
-        case .character:
-            searchText = "Rick"
-            var urlString = "https://rickandmortyapi.com/api/character/?"
-            urlString += "?name=\(searchText)"
+        // Build arguments
+        var queryParams: [URLQueryItem] = [
+            URLQueryItem(name: "name", value: searchText)
+        ]
+        
+        // Add options
+        queryParams.append(contentsOf: optionMap.enumerated().compactMap({ _, element in
+            let key: RMSearchInputViewModel.DynamicOption = element.key
+            let value: String = element.value
+            return URLQueryItem(name: key.queryArgument, value: value)
+        }))
+        
+        // Create request
+        let request = RMRequest(
+            endpoint: config.type.endpoint,
+            queryParameters: queryParams)
+        
+        RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { result in
+            // Notify view of results, no results, or error
             
-            for (option, value) in optionMap {
-                urlString += "&\(option.queryArgument)=\(value)"
+            switch result {
+            case .success(let model):
+                print("Search results found: \(model.results.count)")
+            case .failure:
+                break
             }
-            
-            guard let url = URL(string: urlString) else {
-                return
-            }
-            
-            guard let request = RMRequest(url: url) else {
-                return
-            }
-            
-            RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { result in
-                switch result {
-                case .success(let model):
-                    print("Search results found: \(model.results.count)")
-                case .failure:
-                    break
-                }
-            }
-                    
-        case .episode:
-            break
-        case .location:
-            break
         }
-        
-        // Send API Call
-        
-        
-        // Notify view of results, no results, or error
     }
     
     public func set(query text: String) {
