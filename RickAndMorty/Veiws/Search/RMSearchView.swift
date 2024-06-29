@@ -44,7 +44,7 @@ final class RMSearchView: UIView {
         }
         
         viewModel.registerSearchResultHandler {
-            <#code#>
+            //
         }
     }
     

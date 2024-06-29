@@ -9,3 +9,6 @@
 
 import Foundation
 
+struct RMSearchResultViewModel {
+    
+}

@@ -51,16 +51,43 @@ final class RMSearchViewModel {
             endpoint: config.type.endpoint,
             queryParameters: queryParams)
         
-        RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { result in
+        switch config.type.endpoint {
+        case .character: 
+            makeSearchAPICall(RMGetAllCharatersResponse.self, request: request)
+        case .episode:
+            makeSearchAPICall(RMGetAllEpisodesResponse.self, request: request)
+        case .location:
+            makeSearchAPICall(RMGetAllLocationsResponse.self, request: request)
+        }
+    }
+    
+    private func makeSearchAPICall<T: Codable>(_ type: T.Type, request: RMRequest) {
+        RMService.shared.execute(request, expecting: type) { [weak self] result in
             // Notify view of results, no results, or error
             
             switch result {
             case .success(let model):
-                // Episodes, Characters: CollectionView; locatableL table
-                print("Search results found: \(model.results.count)")
+                self?.processSearchResults(model: model)
             case .failure:
+                print("Failed to get results")
                 break
             }
+        }
+    }
+    
+    private func processSearchResults(model: Codable) {
+        // Episodes, Characters: CollectionView; locatableL table
+        if let characterResults = model as? RMGetAllCharatersResponse {
+            print("Results: \(characterResults.results)")
+        }
+        else if let episodesResults = model as? RMGetAllEpisodesResponse {
+            print("Results: \(episodesResults.results)")
+        }
+        else if let locationsResults = model as? RMGetAllLocationsResponse {
+            print("Results: \(locationsResults.results)")
+        }
+        else {
+            // Error: No results view
         }
     }
     

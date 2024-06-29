@@ -31,7 +31,7 @@ final class RMLocationViewModel {
     // Location response info
     // Will contain next url, if present
     
-    private var apiInfo: RMGetLocationsResponse.Info?
+    private var apiInfo: RMGetAllLocationsResponse.Info?
     
     public private(set) var cellViewModels: [RMLocationTableViewCellViewModel] = []
     
@@ -45,7 +45,7 @@ final class RMLocationViewModel {
     }
     
     public func fetchLocations() {
-        RMService.shared.execute(.listLocationsRequest, expecting: RMGetLocationsResponse.self) { [weak self] result in
+        RMService.shared.execute(.listLocationsRequest, expecting: RMGetAllLocationsResponse.self) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.apiInfo = model.info
