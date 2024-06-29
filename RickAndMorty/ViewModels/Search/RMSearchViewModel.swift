@@ -34,9 +34,6 @@ final class RMSearchViewModel {
     }
     
     public func executeSearch() {
-        // Test search text
-        print("Search text: \(searchText)")
-        
         // Build arguments
         var queryParams: [URLQueryItem] = [
             URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
@@ -59,6 +56,7 @@ final class RMSearchViewModel {
             
             switch result {
             case .success(let model):
+                // Episodes, Characters: CollectionView; locatableL table
                 print("Search results found: \(model.results.count)")
             case .failure:
                 break
