@@ -19,7 +19,7 @@ final class RMSearchViewModel {
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
     private var searchText = ""
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
-    private var searchResultHandler: (() -> ())?
+    private var searchResultHandler: ((RMSearchResultViewModel) -> ())?
     
     // MARK: - Init
     
@@ -29,7 +29,7 @@ final class RMSearchViewModel {
     
     // MARK: - Public
     
-    public func registerSearchResultHandler(_ block: @escaping () -> ()) {
+    public func registerSearchResultHandler(_ block: @escaping (RMSearchResultViewModel) -> ()) {
         self.searchResultHandler = block
     }
     
@@ -76,18 +76,20 @@ final class RMSearchViewModel {
     }
     
     private func processSearchResults(model: Codable) {
-        // Episodes, Characters: CollectionView; locatableL table
+        var resultsVM: RMSearchResultViewModel?
         if let characterResults = model as? RMGetAllCharatersResponse {
-            let results = RMSearchResultViewModel(results: characterResults.results)
+            resultsVM = .characters
         }
         else if let episodesResults = model as? RMGetAllEpisodesResponse {
-            let results = RMSearchResultViewModel(results: episodesResults.results)
+            resultsVM = .episodes
         }
         else if let locationsResults = model as? RMGetAllLocationsResponse {
-            let results = RMSearchResultViewModel(results: locationsResults.results)
+            resultsVM = .locations
         }
-        else {
-            // Error: No results view
+        if let results = resultsVM {
+            self.searchResultHandler?(results)
+        } else {
+            // fallback error
         }
     }
     

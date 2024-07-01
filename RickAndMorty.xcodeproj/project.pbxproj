@@ -377,7 +377,6 @@
 				E496CE102C21CA1800167BFF /* RMSearchView.swift */,
 				E496CE142C21CF7000167BFF /* RMNoSearchResultsView.swift */,
 				E496CE192C21D13B00167BFF /* RMSearchInputView.swift */,
-				E4FD2C092C3006B70074FB08 /* RMSearchResultViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -388,6 +387,7 @@
 				E496CE122C21CB1400167BFF /* RMSearchViewModel.swift */,
 				E496CE172C21D04700167BFF /* RMNoSearchResultsViewModel.swift */,
 				E496CE1B2C21D1CE00167BFF /* RMSearchInputViewModel.swift */,
+				E4FD2C092C3006B70074FB08 /* RMSearchResultViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
