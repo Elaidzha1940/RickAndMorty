@@ -52,7 +52,7 @@ final class RMSearchViewModel {
             queryParameters: queryParams)
         
         switch config.type.endpoint {
-        case .character: 
+        case .character:
             makeSearchAPICall(RMGetAllCharatersResponse.self, request: request)
         case .episode:
             makeSearchAPICall(RMGetAllEpisodesResponse.self, request: request)
@@ -78,13 +78,13 @@ final class RMSearchViewModel {
     private func processSearchResults(model: Codable) {
         // Episodes, Characters: CollectionView; locatableL table
         if let characterResults = model as? RMGetAllCharatersResponse {
-            print("Results: \(characterResults.results)")
+            let results = RMSearchResultViewModel(results: characterResults.results)
         }
         else if let episodesResults = model as? RMGetAllEpisodesResponse {
-            print("Results: \(episodesResults.results)")
+            let results = RMSearchResultViewModel(results: episodesResults.results)
         }
         else if let locationsResults = model as? RMGetAllLocationsResponse {
-            print("Results: \(locationsResults.results)")
+            let results = RMSearchResultViewModel(results: locationsResults.results)
         }
         else {
             // Error: No results view
