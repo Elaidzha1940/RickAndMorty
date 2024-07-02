@@ -26,6 +26,8 @@ final class RMSearchResultsView: UIView {
         return table
     }()
     
+    private var locationCellViewModels: [RMLocationTableViewCellViewModel] = []
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -46,20 +48,23 @@ final class RMSearchResultsView: UIView {
         }
         
         switch viewModel {
-        case .characters(let viewModel):
-            setUPCollectionView()
-        case .episodes(let viewModel):
-            setUpTableView()
-        case .locations(let viewModel):
-            setUPCollectionView()
+        case .characters(let viewModels):
+            setUpCollectionView()
+        case .locations(let viewModels):
+            setUpTableView(viewModels: viewModels)
+        case .episodes(let viewModels):
+            setUpCollectionView()
         }
     }
     
-    private func setUPCollectionView() {
+    private func setUpCollectionView() {
         //
     }
     
-    private func setUpTableView() {
+    private func setUpTableView(viewModels: [RMLocationTableViewCellViewModel]) {
+        self.locationCellViewModels = viewModels
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.isHidden = false
     }
     
