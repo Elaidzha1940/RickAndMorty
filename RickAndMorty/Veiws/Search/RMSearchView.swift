@@ -22,6 +22,7 @@ final class RMSearchView: UIView {
     
     private let searchInputView = RMSearchInputView()
     private let noResultsView = RMNoSearchResultsView()
+    private let resultsView = RMSearchResultsView()
     
     // Results collectionView
     
@@ -32,7 +33,7 @@ final class RMSearchView: UIView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews(noResultsView, searchInputView)
+        addSubviews(resultsView, noResultsView, searchInputView)
         addConstraints()
         
         searchInputView.configure(with: RMSearchInputViewModel(type: viewModel.config.type))
@@ -59,6 +60,11 @@ final class RMSearchView: UIView {
             searchInputView.leftAnchor.constraint(equalTo: leftAnchor),
             searchInputView.rightAnchor.constraint(equalTo: rightAnchor),
             searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 55 : 110),
+            
+            resultsView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor),
+            resultsView.leftAnchor.constraint(equalTo: leftAnchor),
+            resultsView.rightAnchor.constraint(equalTo: rightAnchor),
+            resultsView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             // No results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
