@@ -78,13 +78,24 @@ final class RMSearchViewModel {
     private func processSearchResults(model: Codable) {
         var resultsVM: RMSearchResultViewModel?
         if let characterResults = model as? RMGetAllCharatersResponse {
-            resultsVM = .characters
+            resultsVM = .characters(characterResults.results.compactMap({
+                return RMCharacterCollectionViewCellViewModel(
+                    characterName: $0.name,
+                    characterStatus: $0.status,
+                    characterImageUrl: URL(string: $0.image))
+            }))
         }
         else if let episodesResults = model as? RMGetAllEpisodesResponse {
-            resultsVM = .episodes
+            resultsVM = .episodes(episodesResults.results.compactMap({
+                return RMCharacterEpisodeCollectionViewCellViewModel(
+                    episodeDataUrl: URL(string: $0.url))
+            }))
         }
         else if let locationsResults = model as? RMGetAllLocationsResponse {
-            resultsVM = .locations
+            resultsVM = .locations(locationsResults.results.compactMap({
+                return RMLocationTableViewCellViewModel(
+                    location: $0)
+            }))
         }
         if let results = resultsVM {
             self.searchResultHandler?(results)
