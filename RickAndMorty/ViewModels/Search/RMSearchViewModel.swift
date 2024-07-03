@@ -21,6 +21,7 @@ final class RMSearchViewModel {
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
     private var searchResultHandler: ((RMSearchResultViewModel) -> ())?
     private var noResultsHandler: (() -> ())?
+    private var searchResultsModel: Codable? 
     
     // MARK: - Init
     
@@ -104,6 +105,7 @@ final class RMSearchViewModel {
             }))
         }
         if let results = resultsVM {
+            self.searchResultsModel = model
             self.searchResultHandler?(results)
         } else {
             // fallback error
@@ -112,7 +114,7 @@ final class RMSearchViewModel {
     }
     
     private func handleNoResults() {
-        noResultsHandler?() 
+        noResultsHandler?()
     }
     
     public func set(query text: String) {

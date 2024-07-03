@@ -9,8 +9,13 @@
 
 import UIKit
 
+protocol RMSearchResultsViewDelegate: AnyObject {
+    func rmSearchResultsView(_ resultsView: RMSearchResultsView, didTapLocationAt index: Int)
+}
+
 /// Shows search results UI (table or collection as needed)
 final class RMSearchResultsView: UIView {
+    weak var delegate: RMSearchResultsViewDelegate?
     
     private var viewModel: RMSearchResultViewModel? {
         didSet {
@@ -62,10 +67,11 @@ final class RMSearchResultsView: UIView {
     }
     
     private func setUpTableView(viewModels: [RMLocationTableViewCellViewModel]) {
-        self.locationCellViewModels = viewModels
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
+        self.locationCellViewModels = viewModels
+        tableView.reloadData()
     }
     
     private func addConstraints() {
@@ -98,7 +104,11 @@ extension RMSearchResultsView: UITableViewDataSource, UITableViewDelegate {
         }
         cell.configure(with: locationCellViewModels[indexPath.row])
         return cell
-        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.rmSearchResultsView(self, didTapLocationAt: indexPath.row)
     }
 }
 
