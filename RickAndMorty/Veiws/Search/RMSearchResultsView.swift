@@ -83,3 +83,22 @@ final class RMSearchResultsView: UIView {
         self.viewModel = viewModel
     }
 }
+
+// MARK: - TableView
+
+extension RMSearchResultsView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationCellViewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RMLocationTableViewCell.cellIdentifier,
+                                                       for: indexPath) as? RMLocationTableViewCell else {
+            fatalError("Failed to dequeue RMLocationTableViewCell")
+        }
+        cell.configure(with: locationCellViewModels[indexPath.row])
+        return cell
+        
+    }
+}
+
