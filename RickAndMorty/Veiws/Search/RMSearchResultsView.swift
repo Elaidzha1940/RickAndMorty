@@ -88,12 +88,9 @@ final class RMSearchResultsView: UIView {
     private func setUpCollectionView() {
         self.tableView.isHidden = true
         self.collectionView.isHidden = false
-        
-        collectionView.backgroundColor = .systemPink
-        
+        //        collectionView.backgroundColor = .systemPink
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.reloadData()
     }
     
@@ -174,6 +171,9 @@ extension RMSearchResultsView: UICollectionViewDelegate, UICollectionViewDataSou
             for: indexPath) as? RMCharacterEpisodeCollectionViewCell else {
             fatalError()
         }
+        if let episodeVM = currentViewModel as? RMCharacterEpisodeCollectionViewCellViewModel {
+            cell.configure(with: episodeVM)
+        }
         return cell
     }
     
@@ -184,6 +184,18 @@ extension RMSearchResultsView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .zero
+        let currentViewModel = collectionViewCellViewModels[indexPath.row]
+        
+        let bounds = collectionView.bounds
+        
+        if currentViewModel is RMCharacterCollectionViewCellViewModel {
+            // Character size
+            let width = (bounds.width-30)/2
+            return CGSize(width: width, height: width * 1.5)
+        }
+        
+        // Episode
+        let width = bounds.width-20
+        return CGSize(width: width, height: 100)
     }
 }
