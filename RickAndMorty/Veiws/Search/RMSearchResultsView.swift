@@ -88,7 +88,6 @@ final class RMSearchResultsView: UIView {
     private func setUpCollectionView() {
         self.tableView.isHidden = true
         self.collectionView.isHidden = false
-        //        collectionView.backgroundColor = .systemPink
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
