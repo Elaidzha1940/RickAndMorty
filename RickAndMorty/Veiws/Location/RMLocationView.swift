@@ -138,6 +138,9 @@ extension RMLocationView: UIScrollViewDelegate {
     }
     
     private func showLoadingIndicator() {
-        tableView.tableFooterView = RMTableLoadingFooterView
+        let footer = RMTableLoadingFooterView(frame:  CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
+//        footer.backgroundColor = .systemMint
+//        footer.frame =
+        tableView.tableFooterView = footer
     }
 }
