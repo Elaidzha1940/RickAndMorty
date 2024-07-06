@@ -37,6 +37,6 @@ The app has five key area
 
 Testing & Notes
 ------
-
+-  This project fully Unit and UI tested.
 
 ------
