@@ -5,9 +5,6 @@ Full featured iOS app showcasing the Rick And Morty API.
 -----
 
 
-
-
-
 Overview
 -----
 - Written in Swift
@@ -37,6 +34,6 @@ The app has five key area
 
 Testing & Notes
 ------
--  This project will be fully Unit and UI tested.
+-  This project will be fully Unit and UI Tested.
 
 ------
