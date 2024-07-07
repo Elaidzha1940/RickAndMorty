@@ -16,7 +16,7 @@ protocol RMLocationViewDelegate: AnyObject {
 final class RMLocationView: UIView {
     
     public weak var delegate: RMLocationViewDelegate?
-        
+    
     private var viewModel: RMLocationViewModel? {
         didSet {
             spinner.stopAnimating()
@@ -87,7 +87,7 @@ final class RMLocationView: UIView {
 extension RMLocationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         guard let locationModel = viewModel?.location(at: indexPath.row) else {
             return
         }
@@ -132,6 +132,11 @@ extension RMLocationView: UIScrollViewDelegate {
                     self?.showLoadingIndicator()
                 }
                 viewModel.fetchAdditionalLocations()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    print("Refreshing table rows")
+                    self?.tableView.reloadData()
+                })
             }
             t.invalidate()
         }
@@ -139,8 +144,6 @@ extension RMLocationView: UIScrollViewDelegate {
     
     private func showLoadingIndicator() {
         let footer = RMTableLoadingFooterView(frame:  CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
-//        footer.backgroundColor = .systemMint
-//        footer.frame =
         tableView.tableFooterView = footer
     }
 }

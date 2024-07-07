@@ -37,11 +37,11 @@ final class RMLocationViewModel {
     
     public var shouldShowLoadMoreIndicator: Bool {
         return apiInfo?.next != nil
-    } 
+    }
     
     public var isLoadingMoreLocations = false
     
-    // MARK: - Init 
+    // MARK: - Init
     
     init() {}
     
@@ -72,23 +72,13 @@ final class RMLocationViewModel {
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 print("More locations: \(moreResults.count)")
-//                strongSelf.apiInfo = info
-//
-//                let originalCount = strongSelf.episodes.count
-//                let newCount = moreResults.count
-//                let total = originalCount+newCount
-//                let startingIndex = total - newCount
-//                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
-//                    return IndexPath(row: $0, section: 0)
-//                })
-//                strongSelf.episodes.append(contentsOf: moreResults)
-//
-//                DispatchQueue.main.async {
-//                    strongSelf.delegate?.didLoadMoreEpisodes(
-//                        with: indexPathsToAdd)
-//
-//                    strongSelf.isLoadingMoreCharacters = false
-//                }
+                strongSelf.apiInfo = info
+                strongSelf.cellViewModels .append(contentsOf: moreResults.compactMap({
+                    return RMLocationTableViewCellViewModel(location: $0)
+                }))
+                DispatchQueue.main.async {
+                    strongSelf.isLoadingMoreLocations = false
+                }
             case .failure(let failure):
                 print(String(describing: failure))
                 self?.isLoadingMoreLocations = false
@@ -112,7 +102,6 @@ final class RMLocationViewModel {
                 DispatchQueue.main.async {
                     self?.delegate?.didFetchInitialLocations()
                 }
-                // Изменение
             case .failure(let error):
                 // TODO: Handle error
                 break
