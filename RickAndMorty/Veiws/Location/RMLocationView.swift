@@ -25,6 +25,15 @@ final class RMLocationView: UIView {
             UIView.animate(withDuration: 0.3) {
                 self.tableView.alpha = 1
             }
+            
+            viewModel?.registerDidFinishPaginationBlock{ [weak self] in
+                DispatchQueue.main.async {
+                    // Laoding inidiactor go bye
+                    self?.tableView.tableFooterView = nil
+                    // Reload data
+                    self?.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -54,15 +63,6 @@ final class RMLocationView: UIView {
         spinner.startAnimating()
         addConstraints()
         configureTable()
-        
-        viewModel?.registerDidFinishPaginationBlock({ [weak self] in
-            DispatchQueue.main.async {
-                // Laoding inidiactor go bye
-                self?.tableView.tableFooterView = nil
-                // Reload data
-                self?.tableView.reloadData()
-            }
-        })
     }
     
     required init?(coder: NSCoder) {

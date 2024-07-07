@@ -39,7 +39,7 @@ final class RMLocationViewModel {
         return apiInfo?.next != nil
     }
     
-    public var isLoadingMoreLocations = false
+    public var isLoadingMoreLocations = false 
     
     private var didFinishpagination: (() -> ())?
     
@@ -77,7 +77,6 @@ final class RMLocationViewModel {
             case .success(let responseModel):
                 let moreResults = responseModel.results
                 let info = responseModel.info
-//                print("More locations: \(moreResults.count)")
                 strongSelf.apiInfo = info
                 strongSelf.cellViewModels .append(contentsOf: moreResults.compactMap({
                     return RMLocationTableViewCellViewModel(location: $0)
