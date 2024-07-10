@@ -40,6 +40,10 @@ final class RMSearchViewModel {
     }
     
     public func executeSearch() {
+        guard let !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        
         // Build arguments
         var queryParams: [URLQueryItem] = [
             URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))

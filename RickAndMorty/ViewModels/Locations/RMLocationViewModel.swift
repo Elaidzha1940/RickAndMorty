@@ -39,7 +39,7 @@ final class RMLocationViewModel {
         return apiInfo?.next != nil
     }
     
-    public var isLoadingMoreLocations = false 
+    public var isLoadingMoreLocations = false
     
     private var didFinishpagination: (() -> ())?
     
