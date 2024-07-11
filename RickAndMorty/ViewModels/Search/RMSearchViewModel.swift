@@ -19,7 +19,7 @@ final class RMSearchViewModel {
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
     private var searchText = ""
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
-    private var searchResultHandler: ((RMSearchResultViewModel) -> ())?
+    private var searchResultHandler: ((RMSearchResultType) -> ())?
     private var noResultsHandler: (() -> ())?
     private var searchResultsModel: Codable? 
     
@@ -87,7 +87,7 @@ final class RMSearchViewModel {
     }
     
     private func processSearchResults(model: Codable) {
-        var resultsVM: RMSearchResultViewModel?
+        var resultsVM: RMSearchResultType?
         if let characterResults = model as? RMGetAllCharatersResponse {
             resultsVM = .characters(characterResults.results.compactMap({
                 return RMCharacterCollectionViewCellViewModel(
@@ -110,7 +110,8 @@ final class RMSearchViewModel {
         }
         if let results = resultsVM {
             self.searchResultsModel = model
-            self.searchResultHandler?(results)
+            let vm = RMSearchResultViewModel(results: results)
+            self.searchResultHandler?(vm)
         } else {
             // fallback error
             handleNoResults()

@@ -1,7 +1,7 @@
 //  /*
 //
 //  Project: RickAndMorty
-//  File: RMSearchResultViewModel.swift
+//  File: RMSearchResultType.swift
 //  Created by: Elaidzha Shchukin
 //  Date: 29.06.2024
 //
@@ -9,7 +9,11 @@
 
 import Foundation
 
-enum RMSearchResultViewModel {
+struct RMSearchResultViewModel {
+    let results: RMSearchResultType
+}
+
+enum RMSearchResultType {
     case characters([RMCharacterCollectionViewCellViewModel])
     case episodes([RMCharacterEpisodeCollectionViewCellViewModel])
     case locations([RMLocationTableViewCellViewModel])
