@@ -12,6 +12,13 @@ import Foundation
 struct RMSearchResultViewModel {
     let results: RMSearchResultType
     let next: String?
+    public private(set) var isLoadingMoreResults = false 
+    
+    public var shouldShowLoadMoreIndicator: Bool {
+         return next != nil 
+    }
+    
+    
 }
 
 enum RMSearchResultType {
