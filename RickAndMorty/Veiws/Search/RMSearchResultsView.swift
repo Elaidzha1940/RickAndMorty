@@ -51,7 +51,10 @@ final class RMSearchResultsView: UIView {
         return collectionView
     }()
     
+    /// TableView viewModels
     private var locationCellViewModels: [RMLocationTableViewCellViewModel] = []
+    
+    /// CollectionView ViewModels
     private var collectionViewCellViewModels: [any Hashable] = []
     
     // MARK: - Init

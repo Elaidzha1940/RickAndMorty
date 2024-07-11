@@ -21,7 +21,7 @@ final class RMSearchViewModel {
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
     private var searchResultHandler: ((RMSearchResultType) -> ())?
     private var noResultsHandler: (() -> ())?
-    private var searchResultsModel: Codable? 
+    private var searchResultsModel: Codable?
     
     // MARK: - Init
     
@@ -88,6 +88,7 @@ final class RMSearchViewModel {
     
     private func processSearchResults(model: Codable) {
         var resultsVM: RMSearchResultType?
+        var nextUrl: String?
         if let characterResults = model as? RMGetAllCharatersResponse {
             resultsVM = .characters(characterResults.results.compactMap({
                 return RMCharacterCollectionViewCellViewModel(
@@ -95,22 +96,26 @@ final class RMSearchViewModel {
                     characterStatus: $0.status,
                     characterImageUrl: URL(string: $0.image))
             }))
+            nextUrl = characterResults.info.next
         }
         else if let episodesResults = model as? RMGetAllEpisodesResponse {
             resultsVM = .episodes(episodesResults.results.compactMap({
                 return RMCharacterEpisodeCollectionViewCellViewModel(
                     episodeDataUrl: URL(string: $0.url))
             }))
+            nextUrl = episodesResults.info.next
         }
         else if let locationsResults = model as? RMGetAllLocationsResponse {
             resultsVM = .locations(locationsResults.results.compactMap({
                 return RMLocationTableViewCellViewModel(
                     location: $0)
             }))
+            nextUrl = locationsResults.info.next
         }
+        
         if let results = resultsVM {
             self.searchResultsModel = model
-            let vm = RMSearchResultViewModel(results: results)
+            let vm = RMSearchResultViewModel(results: results, next: nextUrl)
             self.searchResultHandler?(vm)
         } else {
             // fallback error

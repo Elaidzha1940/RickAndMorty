@@ -11,6 +11,7 @@ import Foundation
 
 struct RMSearchResultViewModel {
     let results: RMSearchResultType
+    let next: String?
 }
 
 enum RMSearchResultType {
