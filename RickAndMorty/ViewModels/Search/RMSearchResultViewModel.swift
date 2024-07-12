@@ -16,15 +16,16 @@ final class RMSearchResultViewModel {
     init(results: RMSearchResultType, next: String?) {
         self.results = results
         self.next = next
+//        print(next)
     }
     
     public private(set) var isLoadingMoreResults = false
     
     public var shouldShowLoadMoreIndicator: Bool {
-         return next != nil 
+        return next != nil
     }
     
-    public func fetchAdditionalLocations() {
+    public func fetchAdditionalLocations(completion: @escaping([RMLocationTableViewCellViewModel]) -> ()) {
         guard !isLoadingMoreResults else {
             return
         }
@@ -54,10 +55,11 @@ final class RMSearchResultViewModel {
                 let additionalLocations = moreResults.compactMap({
                     return RMLocationTableViewCellViewModel(location: $0)
                 })
+                var newResults: [RMLocationTableViewCellViewModel] = []
                 
                 switch strongSelf.results {
                 case .locations(let existingResults):
-                    let newResults = existingResults + additionalLocations
+                    newResults = existingResults + additionalLocations
                     strongSelf.results = .locations(newResults)
                     break
                 case .characters, .episodes:
@@ -68,7 +70,7 @@ final class RMSearchResultViewModel {
                     strongSelf.isLoadingMoreResults = false
                     
                     // Notify via callback
-//                    strongSelf.didFinishpagination?()
+                    completion(newResults)
                 }
             case .failure(let failure):
                 print(String(describing: failure))
