@@ -217,7 +217,7 @@ extension RMSearchResultsView: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let viewModel = viewModel,
-                viewModel.shouldShowLoadMoreIndicator else {
+              viewModel.shouldShowLoadMoreIndicator else {
             return .zero
         }
         return CGSize(width: collectionView.frame.width, height: 100)
@@ -251,14 +251,11 @@ extension RMSearchResultsView: UIScrollViewDelegate {
             let totalScrollViewFixedHeight = scrollView.frame.size.height
             
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-                DispatchQueue.main.async {
-                    self?.showLoadingIndicator()
-                }
-                viewModel.fetchAdditionalLocations { [weak self] newResults in
-                    // Refresh table
+                viewModel.fetchAdditionalResults { [weak self] newResults in
                     self?.tableView.tableFooterView = nil
-                    self?.locationCellViewModels = newResults
-                    self?.tableView.reloadData()
+                    self?.collectionViewCellViewModels = newResults
+                    
+                    print("Should add more result cells for search results")
                 }
             }
             t.invalidate()
@@ -280,7 +277,7 @@ extension RMSearchResultsView: UIScrollViewDelegate {
             
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
                 DispatchQueue.main.async {
-                    self?.showLoadingIndicator()
+                    self?.showTableLoadingIndicator()
                 }
                 viewModel.fetchAdditionalLocations { [weak self] newResults in
                     // Refresh table
@@ -293,7 +290,7 @@ extension RMSearchResultsView: UIScrollViewDelegate {
         }
     }
     
-    private func showLoadingIndicator() {
+    private func showTableLoadingIndicator() {
         let footer = RMTableLoadingFooterView(frame:  CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
         tableView.tableFooterView = footer
     }
