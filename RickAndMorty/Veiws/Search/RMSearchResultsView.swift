@@ -255,7 +255,7 @@ extension RMSearchResultsView: UIScrollViewDelegate {
                     self?.tableView.tableFooterView = nil
                     self?.collectionViewCellViewModels = newResults
                     
-                    print("Should add more result cells for search results")
+                    print("Should add more result cells for search results: \(newResults.count)")
                 }
             }
             t.invalidate()

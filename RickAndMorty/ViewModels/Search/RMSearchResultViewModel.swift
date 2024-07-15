@@ -80,7 +80,7 @@ final class RMSearchResultViewModel {
     }
     
     // fetchAdditionalResults
-    public func fetchAdditionalResults(completion: @escaping([Any Hashable]) -> ()) {
+    public func fetchAdditionalResults(completion: @escaping([any Hashable]) -> Void) {
         guard !isLoadingMoreResults else {
             return
         }
@@ -142,10 +142,10 @@ final class RMSearchResultViewModel {
                     strongSelf.next = info.next // Capture new pagination url
                     
                     let additionalResults = moreResults.compactMap({
-                        return RMLocationTableViewCellViewModel(location: $0)
+                        return RMCharacterEpisodeCollectionViewCellViewModel(episodeDataUrl: URL(string: $0.url))
                     })
-                    var newResults: [RMLocationTableViewCellViewModel] = []
-                    newResults = existingResults + additionalLocations
+                    var newResults: [RMCharacterEpisodeCollectionViewCellViewModel] = []
+                    newResults = existingResults + additionalResults
                     strongSelf.results = .episodes(newResults)
                     
                     DispatchQueue.main.async {
