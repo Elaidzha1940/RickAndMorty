@@ -19,7 +19,7 @@ final class RMSearchViewModel {
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
     private var searchText = ""
     private var optionMapUpdateBlock: (((RMSearchInputViewModel.DynamicOption, String)) -> ())?
-    private var searchResultHandler: ((RMSearchResultType) -> ())?
+    private var searchResultHandler: ((RMSearchResultViewModel) -> ())?
     private var noResultsHandler: (() -> ())?
     private var searchResultsModel: Codable?
     
@@ -40,7 +40,7 @@ final class RMSearchViewModel {
     }
     
     public func executeSearch() {
-        guard let !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
         
@@ -107,8 +107,7 @@ final class RMSearchViewModel {
         }
         else if let locationsResults = model as? RMGetAllLocationsResponse {
             resultsVM = .locations(locationsResults.results.compactMap({
-                return RMLocationTableViewCellViewModel(
-                    location: $0)
+                return RMLocationTableViewCellViewModel(location: $0)
             }))
             nextUrl = locationsResults.info.next
         }

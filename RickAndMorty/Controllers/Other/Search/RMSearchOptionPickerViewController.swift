@@ -74,7 +74,3 @@ extension RMSearchOptionPickerViewController: UITableViewDelegate, UITableViewDa
     }
 }
 
-
-
-
-

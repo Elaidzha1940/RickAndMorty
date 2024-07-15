@@ -73,6 +73,6 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
     // MARK: ViewModel Delegate
     
     func didFetchEpisodeDetails() {
-//        detailView.configure(with: viewModel)
+        //
     }
 }

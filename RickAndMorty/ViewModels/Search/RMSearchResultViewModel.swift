@@ -16,7 +16,6 @@ final class RMSearchResultViewModel {
     init(results: RMSearchResultType, next: String?) {
         self.results = results
         self.next = next
-//        print(next)
     }
     
     public private(set) var isLoadingMoreResults = false
