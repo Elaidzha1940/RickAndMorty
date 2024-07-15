@@ -9,11 +9,6 @@
 
 import Foundation
 
-// Responsibilities
-// - show search results
-// - show no results view
-// - kick off API requests
-
 final class RMSearchViewModel {
     let config: RMSearchViewController.Config
     private var optionMap: [RMSearchInputViewModel.DynamicOption: String] = [:]
@@ -73,7 +68,6 @@ final class RMSearchViewModel {
     
     private func makeSearchAPICall<T: Codable>(_ type: T.Type, request: RMRequest) {
         RMService.shared.execute(request, expecting: type) { [weak self] result in
-            // Notify view of results, no results, or error
             
             switch result {
             case .success(let model):

@@ -77,8 +77,8 @@ final class RMLocationDetailView: UIView {
     }
     
     private func createColectionView() -> UICollectionView {
-        let layout = UICollectionViewCompositionalLayout { section, _ in
-            return /*self.layout(for: section)*/
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+            return self.layout(for: sectionIndex)
         }
         let collectionView = UICollectionView(
             frame: .zero,
@@ -100,6 +100,11 @@ final class RMLocationDetailView: UIView {
 
     public func configure(with viewModel: RMLocationDetailViewModel) {
         self.viewModel = viewModel
+    }
+
+    private func layout(for sectionIndex: Int) -> NSCollectionLayoutSection? {
+        // Создайте и настройте NSCollectionLayoutSection здесь в зависимости от секции
+        return createInfoLayout()
     }
 }
 
@@ -189,3 +194,5 @@ extension RMLocationDetailView {
         return section
     }
 }
+
+

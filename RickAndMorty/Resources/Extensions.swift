@@ -9,15 +9,6 @@
 
 import UIKit
 
-// Мой
-//extension UIView {
-//    func addSubviews(_ views: UIView...) {
-//        views.forEach({ addSubview($0) })
-//    }
-//}
-
-
-
 extension UIView {
     /// Add multiple subviews
     /// - Parameter views: Variadic views
@@ -28,7 +19,12 @@ extension UIView {
     }
 }
 
-//extension UIDevice {
+extension UIDevice {
 //    /// Check if current device is phone idiom
-//    static let isiPhone = UIDevice.current.userInterfaceIdiom == .phone
-//}
+static let isiPhone = UIDevice.current.userInterfaceIdiom == .phone
+    
+}
+
+
+
+
