@@ -103,7 +103,6 @@ final class RMLocationDetailView: UIView {
     }
 
     private func layout(for sectionIndex: Int) -> NSCollectionLayoutSection? {
-        // Создайте и настройте NSCollectionLayoutSection здесь в зависимости от секции
         return createInfoLayout()
     }
 }

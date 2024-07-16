@@ -27,7 +27,7 @@ final class RMSearchViewModel {
     // MARK: - Public
     
     public func registerSearchResultHandler(_ block: @escaping (RMSearchResultViewModel) -> ()) {
-         self.searchResultHandler = block
+        self.searchResultHandler = block
     }
     
     public func registerNoResultsHandler(_ block: @escaping () -> ()) {
