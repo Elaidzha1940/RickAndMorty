@@ -145,7 +145,7 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
+        
         let bounds = collectionView.bounds
         let width: CGFloat
         if UIDevice.isiPhone {

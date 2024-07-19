@@ -11,28 +11,28 @@ import UIKit
 
 final class RMCharacterDetailViewModel {
     private let character: RMCharacter
-
+    
     public var episodes: [String] {
         character.episode
     }
-
+    
     enum SectionType {
         case photo(viewModel: RMCharacterPhotoCollectionViewCellViewModel)
-
+        
         case information(viewModels: [RMCharacterInfoCollectionViewCellViewModel])
-
+        
         case episodes(viewModels: [RMCharacterEpisodeCollectionViewCellViewModel])
     }
-
+    
     public var sections: [SectionType] = []
-
+    
     // MARK: - Init
-
+    
     init(character: RMCharacter) {
         self.character = character
         setUpSections()
     }
-
+    
     private func setUpSections() {
         sections = [
             .photo(viewModel: .init(imageUrl: URL(string: character.image))),
@@ -51,17 +51,17 @@ final class RMCharacterDetailViewModel {
             }))
         ]
     }
-
+    
     private var requestUrl: URL? {
         return URL(string: character.url)
     }
-
+    
     public var title: String {
         character.name.uppercased()
     }
-
+    
     // MARK: - Layouts
-
+    
     public func createPhotoSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -73,7 +73,7 @@ final class RMCharacterDetailViewModel {
                                                      leading: 0,
                                                      bottom: 10,
                                                      trailing: 0)
-
+        
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize:  NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -84,7 +84,7 @@ final class RMCharacterDetailViewModel {
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
-
+    
     public func createInfoSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -98,7 +98,7 @@ final class RMCharacterDetailViewModel {
             bottom: 2,
             trailing: 2
         )
-
+        
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize:  NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -109,7 +109,7 @@ final class RMCharacterDetailViewModel {
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
-
+    
     public func createEpisodeSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -123,7 +123,7 @@ final class RMCharacterDetailViewModel {
             bottom: 10,
             trailing: 8
         )
-
+        
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize:  NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.8 : 0.4),
