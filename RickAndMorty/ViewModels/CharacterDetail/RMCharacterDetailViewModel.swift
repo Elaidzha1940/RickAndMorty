@@ -88,7 +88,7 @@ final class RMCharacterDetailViewModel {
     public func createInfoSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.5 : 0.25),
+                widthDimension: .fractionalWidth(UIDevice.isiPhone  ? 0.5 : 0.25),
                 heightDimension: .fractionalHeight(1.0)
             )
         )
