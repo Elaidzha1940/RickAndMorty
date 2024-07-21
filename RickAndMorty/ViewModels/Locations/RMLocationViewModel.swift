@@ -111,7 +111,6 @@ final class RMLocationViewModel {
                     self?.delegate?.didFetchInitialLocations()
                 }
             case .failure(_):
-                // TODO: Handle error
                 break
             }
         }
