@@ -20,12 +20,15 @@ protocol RMSearchViewDelegate: AnyObject {
 final class RMSearchView: UIView {
     
     weak var delegate: RMSearchViewDelegate?
+    
     private let viewModel: RMSearchViewModel
     
     // MARK: - Subviews
     
     private let searchInputView = RMSearchInputView()
+    
     private let noResultsView = RMNoSearchResultsView()
+    
     private let resultsView = RMSearchResultsView()
     
     // Results collectionView
@@ -54,7 +57,6 @@ final class RMSearchView: UIView {
     
     private func setUpHandlers(viewModel: RMSearchViewModel) {
         viewModel.registerOptionChangeBlock { tuple in
-            print(String(describing: tuple))
             self.searchInputView.update(option: tuple.0, value: tuple.1)
         }
         
@@ -115,6 +117,7 @@ extension RMSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
+        
     }
 }
 
@@ -137,21 +140,20 @@ extension RMSearchView: RMSearchInputViewDelegate {
 // MARK: - RMSearchResultsViewDelegate
 
 extension RMSearchView: RMSearchResultsViewDelegate {
-    // Location
     func rmSearchResultsView(_ resultsView: RMSearchResultsView, didTapLocationAt index: Int) {
         guard let locationModel = viewModel.locationSearchResult(at: index) else {
             return
         }
         delegate?.rmSearchView(self, didSelectLocation: locationModel)
     }
-    // Episode
+    
     func rmSearchResultsView(_ resultsView: RMSearchResultsView, didTapEpisodeAt index: Int) {
         guard let episodeModel = viewModel.episodeSearchResult(at: index) else {
             return
         }
         delegate?.rmSearchView(self, didSelectEpisode: episodeModel)
     }
-    // Character
+    
     func rmSearchResultsView(_ resultsView: RMSearchResultsView, didTapCharacterAt index: Int) {
         guard let characterModel = viewModel.characterSearchResult(at: index) else {
             return

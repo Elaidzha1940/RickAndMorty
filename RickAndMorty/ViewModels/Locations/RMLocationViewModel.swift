@@ -14,6 +14,7 @@ protocol RMLocationViewModelDelegate: AnyObject {
 }
 
 final class RMLocationViewModel {
+    
     weak var delegate: RMLocationViewModelDelegate?
     
     private var locations: [RMLocation] = [] {
@@ -22,15 +23,13 @@ final class RMLocationViewModel {
                 let cellViewModel = RMLocationTableViewCellViewModel(location: location)
                 if !cellViewModels.contains(cellViewModel) {
                     cellViewModels.append(cellViewModel)
-                    
                 }
             }
         }
     }
     
     // Location response info
-    // Will contain next url, if present
-    
+    // WIll contain next url, if present
     private var apiInfo: RMGetAllLocationsResponse.Info?
     
     public private(set) var cellViewModels: [RMLocationTableViewCellViewModel] = []
@@ -41,14 +40,14 @@ final class RMLocationViewModel {
     
     public var isLoadingMoreLocations = false
     
-    private var didFinishpagination: (() -> ())?
+    private var didFinishPagination: (() -> Void)?
     
     // MARK: - Init
     
     init() {}
     
-    public func registerDidFinishPaginationBlock(_ block: @escaping () -> ()) {
-        self.didFinishpagination = block
+    public func registerDidFinishPaginationBlock(_ block: @escaping () -> Void) {
+        self.didFinishPagination = block
     }
     
     /// Paginate if additional locations are needed
@@ -78,14 +77,14 @@ final class RMLocationViewModel {
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 strongSelf.apiInfo = info
-                strongSelf.cellViewModels .append(contentsOf: moreResults.compactMap({
+                strongSelf.cellViewModels.append(contentsOf: moreResults.compactMap({
                     return RMLocationTableViewCellViewModel(location: $0)
                 }))
                 DispatchQueue.main.async {
                     strongSelf.isLoadingMoreLocations = false
                     
                     // Notify via callback
-                    strongSelf.didFinishpagination?()
+                    strongSelf.didFinishPagination?()
                 }
             case .failure(let failure):
                 print(String(describing: failure))
@@ -102,7 +101,10 @@ final class RMLocationViewModel {
     }
     
     public func fetchLocations() {
-        RMService.shared.execute(.listLocationsRequest, expecting: RMGetAllLocationsResponse.self) { [weak self] result in
+        RMService.shared.execute(
+            .listLocationsRequest,
+            expecting: RMGetAllLocationsResponse.self
+        ) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.apiInfo = model.info
@@ -110,7 +112,7 @@ final class RMLocationViewModel {
                 DispatchQueue.main.async {
                     self?.delegate?.didFetchInitialLocations()
                 }
-            case .failure(_):
+            case .failure(let error):
                 break
             }
         }

@@ -10,12 +10,12 @@
 import Foundation
 
 final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
-    
     public let characterName: String
     private let characterStatus: RMCharacterStatus
     private let characterImageUrl: URL?
     
     // MARK: - Init
+    
     init(
         characterName: String,
         characterStatus: RMCharacterStatus,
@@ -30,14 +30,12 @@ final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
         return "Status: \(characterStatus.text)"
     }
     
-    public func fetchImage(completion: @escaping (Result<Data, Error>) -> ()) {
-        // ToDo: Abstract to Image Manager
+    public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
+        // TODO: Abstract to Image Manager
         guard let url = characterImageUrl else {
             completion(.failure(URLError(.badURL)))
             return
         }
-        ///Тут исправил ошибку
-        _ = URLRequest(url: url)
         RMImageLoader.shared.downloadImage(url, completion: completion)
     }
     
@@ -53,3 +51,4 @@ final class RMCharacterCollectionViewCellViewModel: Hashable, Equatable {
         hasher.combine(characterImageUrl)
     }
 }
+

@@ -23,7 +23,7 @@ final class RMLocationDetailViewModel {
     }
     
     enum SectionType {
-        case information(viewModel: [RMEpisodeInfoCollectionViewCellViewModel])
+        case information(viewModels: [RMEpisodeInfoCollectionViewCellViewModel])
         case characters(viewModel: [RMCharacterCollectionViewCellViewModel])
     }
     
@@ -60,16 +60,18 @@ final class RMLocationDetailViewModel {
         }
         
         cellViewModels = [
-            .information(viewModel: [
+            .information(viewModels: [
                 .init(title: "Location Name", value: location.name),
                 .init(title: "Type", value: location.type),
                 .init(title: "Dimension", value: location.dimension),
                 .init(title: "Created", value: createdString),
             ]),
             .characters(viewModel: characters.compactMap({ character in
-                return RMCharacterCollectionViewCellViewModel(characterName: character.name,
-                                                              characterStatus: character.status,
-                                                              characterImageUrl: URL(string: character.image))
+                return RMCharacterCollectionViewCellViewModel(
+                    characterName: character.name,
+                    characterStatus: character.status,
+                    characterImageUrl: URL(string: character.image)
+                )
             }))
         ]
     }
@@ -81,7 +83,8 @@ final class RMLocationDetailViewModel {
             return
         }
         
-        RMService.shared.execute(request, expecting: RMLocation.self) { [weak self] result in
+        RMService.shared.execute(request,
+                                 expecting: RMLocation.self) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.fetchRelatedCharacters(location: model)
@@ -97,15 +100,16 @@ final class RMLocationDetailViewModel {
         }).compactMap({
             return RMRequest(url: $0)
         })
-   
+        
         let group = DispatchGroup()
         var characters: [RMCharacter] = []
-        for  request in requests {
-            group.enter() // +20
+        for request in requests {
+            group.enter()
             RMService.shared.execute(request, expecting: RMCharacter.self) { result in
                 defer {
-                    group.leave() // -20
+                    group.leave()
                 }
+                
                 switch result {
                 case .success(let model):
                     characters.append(model)
@@ -116,7 +120,10 @@ final class RMLocationDetailViewModel {
         }
         
         group.notify(queue: .main) {
-            self.dataTuple = (location: location, characters: characters)
+            self.dataTuple = (
+                location: location,
+                characters: characters
+            )
         }
     }
 }

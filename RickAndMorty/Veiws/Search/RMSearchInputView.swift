@@ -15,8 +15,9 @@ protocol RMSearchInputViewDelegate: AnyObject {
     func rmSearchInputViewDidTapSearchKeyboardButton(_ inputView: RMSearchInputView)
 }
 
-/// View for top part search screen with search bar
+/// View for top part of search screen with search bar
 final class RMSearchInputView: UIView {
+    
     weak var delegate: RMSearchInputViewDelegate?
     
     private let searchBar: UISearchBar = {
@@ -28,7 +29,7 @@ final class RMSearchInputView: UIView {
     
     private var viewModel: RMSearchInputViewModel? {
         didSet {
-            guard let viewModel = viewModel, viewModel.hasDynamicOptions == true else {
+            guard let viewModel = viewModel, viewModel.hasDynamicOptions else {
                 return
             }
             let options = viewModel.options
@@ -60,7 +61,7 @@ final class RMSearchInputView: UIView {
             searchBar.topAnchor.constraint(equalTo: topAnchor),
             searchBar.leftAnchor.constraint(equalTo: leftAnchor),
             searchBar.rightAnchor.constraint(equalTo: rightAnchor),
-            searchBar.heightAnchor.constraint(equalToConstant: 55)
+            searchBar.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
     
@@ -77,7 +78,7 @@ final class RMSearchInputView: UIView {
             stackView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             stackView.leftAnchor.constraint(equalTo: leftAnchor),
             stackView.rightAnchor.constraint(equalTo: rightAnchor),
-            stackView.topAnchor.constraint(equalTo: bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
         
         return stackView
@@ -93,18 +94,25 @@ final class RMSearchInputView: UIView {
         }
     }
     
-    private func createButton(with option: RMSearchInputViewModel.DynamicOption, tag: Int) -> UIButton {
+    private func createButton(
+        with option: RMSearchInputViewModel.DynamicOption,
+        tag: Int
+    ) -> UIButton {
         let button = UIButton()
-        button.setAttributedTitle(NSAttributedString(
-            string: option.rawValue,
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 18, weight: .medium),
-                .foregroundColor: UIColor.label
-            ]), for: .normal)
-        button.backgroundColor = .secondarySystemBackground
-        button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: option.rawValue,
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+                    .foregroundColor: UIColor.label
+                ]
+            ),
+            for: .normal
+        )
+        button.backgroundColor = .secondarySystemFill
+        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         button.tag = tag
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 6
         
         return button
     }
@@ -130,7 +138,10 @@ final class RMSearchInputView: UIView {
         searchBar.becomeFirstResponder()
     }
     
-    public func update(option: RMSearchInputViewModel.DynamicOption, value: String) {
+    public func update(
+        option: RMSearchInputViewModel.DynamicOption,
+        value: String
+    ) {
         // Update options
         guard let buttons = stackView?.arrangedSubviews as? [UIButton],
               let allOptions = viewModel?.options,
@@ -138,12 +149,16 @@ final class RMSearchInputView: UIView {
             return
         }
         
-        buttons[index].setAttributedTitle(NSAttributedString(
-            string: value.uppercased(),
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 18, weight: .medium),
-                .foregroundColor: UIColor.link
-            ]), for: .normal)
+        buttons[index].setAttributedTitle(
+            NSAttributedString(
+                string: value.uppercased(),
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+                    .foregroundColor: UIColor.link
+                ]
+            ),
+            for: .normal
+        )
     }
 }
 
@@ -155,7 +170,7 @@ extension RMSearchInputView: UISearchBarDelegate {
         delegate?.rmSearchInputView(self, didChangeSearchText: searchText)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Notify that search button was tapped
         searchBar.resignFirstResponder()
         delegate?.rmSearchInputViewDidTapSearchKeyboardButton(self)

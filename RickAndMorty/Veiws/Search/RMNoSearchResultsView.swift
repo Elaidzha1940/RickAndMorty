@@ -16,7 +16,7 @@ final class RMNoSearchResultsView: UIView {
     private let iconView: UIImageView = {
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
-        iconView.tintColor = .systemMint
+        iconView.tintColor = .systemBlue
         iconView.translatesAutoresizingMaskIntoConstraints = false
         return iconView
     }()
@@ -29,7 +29,7 @@ final class RMNoSearchResultsView: UIView {
         return label
     }()
     
-    // MARK: - Init
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)

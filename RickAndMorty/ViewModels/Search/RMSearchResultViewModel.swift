@@ -98,7 +98,7 @@ final class RMSearchResultViewModel {
         
         switch results {
         case .characters(let existingResults):
-            RMService.shared.execute(request, expecting: RMGetAllCharatersResponse.self) { [weak self] result in
+            RMService.shared.execute(request, expecting: RMGetAllCharactersResponse.self) { [weak self] result in
                 guard let strongSelf = self else {
                     return
                 }
