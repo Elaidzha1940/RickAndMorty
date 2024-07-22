@@ -47,7 +47,7 @@ struct RMSettingsView: View {
 #Preview {
     RMSettingsView(viewModel: .init(cellViewModel: RMSettingsOption.allCases.compactMap({
         return RMSettingsCellViewModel(type: $0) { option in
-            
+            //
         }
     })))
 }
