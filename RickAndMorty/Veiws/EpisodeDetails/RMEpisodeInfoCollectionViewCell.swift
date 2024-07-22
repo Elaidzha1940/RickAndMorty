@@ -33,7 +33,7 @@ final class RMEpisodeInfoCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(titleLabel, valueLabel)
         setUpLayer()
-        addConstraint()
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -41,13 +41,13 @@ final class RMEpisodeInfoCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpLayer() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = 8
         layer.masksToBounds = true
-        layer.borderWidth = 2
+        layer.borderWidth = 1
         layer.borderColor = UIColor.secondaryLabel.cgColor
     }
     
-    private func addConstraint() {
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
@@ -58,7 +58,7 @@ final class RMEpisodeInfoCollectionViewCell: UICollectionViewCell {
             valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
             
             titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.47),
-            valueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.47),
+            valueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.47)
         ])
     }
     

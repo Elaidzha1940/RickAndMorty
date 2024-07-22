@@ -9,7 +9,7 @@
 
 import UIKit
 
-/// Interface to relay location view events 
+/// Interface to relay location view events
 protocol RMLocationViewDelegate: AnyObject {
     func rmLocationView(_ locationView: RMLocationView, didSelect location: RMLocation)
 }
@@ -27,9 +27,9 @@ final class RMLocationView: UIView {
                 self.tableView.alpha = 1
             }
             
-            viewModel?.registerDidFinishPaginationBlock{ [weak self] in
+            viewModel?.registerDidFinishPaginationBlock { [weak self] in
                 DispatchQueue.main.async {
-                    // Laoding inidiactor go bye
+                    // Loading indicator go bye bye
                     self?.tableView.tableFooterView = nil
                     // Reload data
                     self?.tableView.reloadData()
@@ -43,7 +43,8 @@ final class RMLocationView: UIView {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.alpha = 0
         table.isHidden = true
-        table.register(RMLocationTableViewCell.self, forCellReuseIdentifier: RMLocationTableViewCell.cellIdentifier)
+        table.register(RMLocationTableViewCell.self,
+                       forCellReuseIdentifier: RMLocationTableViewCell.cellIdentifier)
         return table
     }()
     
@@ -59,7 +60,7 @@ final class RMLocationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        spinner.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         addSubviews(tableView, spinner)
         spinner.startAnimating()
         addConstraints()
@@ -99,11 +100,10 @@ final class RMLocationView: UIView {
 extension RMLocationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         guard let locationModel = viewModel?.location(at: indexPath.row) else {
             return
         }
-        delegate?.self.rmLocationView(self , didSelect: locationModel)
+        delegate?.rmLocationView(self,  didSelect: locationModel)
     }
 }
 
@@ -118,7 +118,10 @@ extension RMLocationView: UITableViewDataSource {
         guard let cellViewModels = viewModel?.cellViewModels else {
             fatalError()
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RMLocationTableViewCell.cellIdentifier, for: indexPath) as? RMLocationTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RMLocationTableViewCell.cellIdentifier,
+            for: indexPath
+        ) as? RMLocationTableViewCell else {
             fatalError()
         }
         let cellViewModel = cellViewModels[indexPath.row]
@@ -131,32 +134,28 @@ extension RMLocationView: UITableViewDataSource {
 
 extension RMLocationView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         guard let viewModel = viewModel,
               !viewModel.cellViewModels.isEmpty,
               viewModel.shouldShowLoadMoreIndicator,
               !viewModel.isLoadingMoreLocations else {
             return
         }
+        
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] t in
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
             
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-                DispatchQueue.main.async {
-                    self?.showLoadingIndicator()
-                }
-                //viewModel.fetchAdditionalLocations()
+                self?.showLoadingIndicator()
+                viewModel.fetchAdditionalLocations()
             }
             t.invalidate()
         }
     }
     
     private func showLoadingIndicator() {
-        let footer = RMTableLoadingFooterView(frame:  CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
+        let footer = RMTableLoadingFooterView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
         tableView.tableFooterView = footer
-        
-//        tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentSize.height), animated: translatesAutoresizingMaskIntoConstraints)
     }
 }
