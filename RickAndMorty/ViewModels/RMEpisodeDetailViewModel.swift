@@ -9,11 +9,11 @@
 
 import UIKit
 
-protocol RMEpisodeDetailViewViewModelDelegate: AnyObject {
+protocol RMEpisodeDetailViewModelDelegate: AnyObject {
     func didFetchEpisodeDetails()
 }
 
-final class RMEpisodeDetailViewViewModel {
+final class RMEpisodeDetailViewModel {
     private let endpointUrl: URL?
     private var dataTuple: (episode: RMEpisode, characters: [RMCharacter])? {
         didSet {
@@ -27,7 +27,7 @@ final class RMEpisodeDetailViewViewModel {
         case characters(viewModel: [RMCharacterCollectionViewCellViewModel])
     }
 
-    public weak var delegate: RMEpisodeDetailViewViewModelDelegate?
+    public weak var delegate: RMEpisodeDetailViewModelDelegate?
 
     public private(set) var cellViewModels: [SectionType] = []
 
@@ -83,8 +83,7 @@ final class RMEpisodeDetailViewViewModel {
             return
         }
 
-        RMService.shared.execute(request,
-                                 expecting: RMEpisode.self) { [weak self] result in
+        RMService.shared.execute(request, expecting: RMEpisode.self) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.fetchRelatedCharacters(episode: model)

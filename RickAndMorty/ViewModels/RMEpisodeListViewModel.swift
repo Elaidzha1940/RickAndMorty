@@ -25,11 +25,8 @@ final class RMEpisodeListViewModel: NSObject {
     
     private let borderColors: [UIColor] = [
         .systemGreen,
-        .systemBlue,
         .systemOrange,
-        .systemPink,
         .systemPurple,
-        .systemRed,
         .systemYellow,
         .systemIndigo,
         .systemMint

@@ -112,7 +112,7 @@ final class RMSearchInputView: UIView {
         button.backgroundColor = .secondarySystemFill
         button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         button.tag = tag
-        button.layer.cornerRadius = 6
+        button.layer.cornerRadius = 10
         
         return button
     }

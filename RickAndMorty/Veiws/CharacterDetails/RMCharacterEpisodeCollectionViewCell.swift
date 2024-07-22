@@ -15,7 +15,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     private let seasonLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
@@ -33,7 +33,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Init 
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,13 +42,13 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
         setUpConstraints()
     }
-   
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
     
     private func setUpLayer() {
-        contentView.layer.cornerRadius = 15
+        contentView.layer.cornerRadius = 8
         contentView.layer.borderWidth = 2
     }
     
@@ -59,7 +59,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
             seasonLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             seasonLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
             
-            nameLabel.topAnchor.constraint(equalTo: seasonLabel.topAnchor),
+            nameLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor),
             nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
             nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
@@ -77,7 +77,7 @@ class RMCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         nameLabel.text = nil
         airDateLabel.text = nil
     }
-
+    
     public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
         viewModel.registerForData { [weak self] data in
             // Main Queue

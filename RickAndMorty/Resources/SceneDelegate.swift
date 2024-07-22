@@ -9,6 +9,7 @@
 
 import UIKit
 
+/// Scene management
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -21,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = vc
         window.makeKeyAndVisible()
         self.window = window
-        
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {}

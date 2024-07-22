@@ -20,7 +20,7 @@ extension UIView {
 }
 
 extension UIDevice {
-    // Check if current device is phone idiom
+    /// Check if current device is phone idiom
     static let isiPhone = UIDevice.current.userInterfaceIdiom == .phone
 }
 

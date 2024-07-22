@@ -12,7 +12,7 @@ import Foundation
 
 /// Primary API service object to get Rick and Morty data
 final class RMService {
-    /// Shared Singletone instance
+    /// Shared singleton instance
     static let shared = RMService()
     
     private let cacheManager = RMAPICacheManager()
@@ -20,6 +20,7 @@ final class RMService {
     /// Privatized constructor
     private init() {}
     
+    /// Error types
     enum RMServiceError: Error {
         case failedToCreateRequest
         case failedToGetData
@@ -35,11 +36,15 @@ final class RMService {
         expecting type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        if let cachedData = cacheManager.chachedResponse(for: request.endpoint, url: request.url) {
+        if let cachedData = cacheManager.cachedResponse(
+            for: request.endpoint,
+            url: request.url
+        ) {
             do {
                 let result = try JSONDecoder().decode(type.self, from: cachedData)
                 completion(.success(result))
-            } catch {
+            }
+            catch {
                 completion(.failure(error))
             }
             return
@@ -59,9 +64,14 @@ final class RMService {
             // Decode response
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
-                self?.cacheManager.setCache(for: request.endpoint, url: request.url, data: data)
+                self?.cacheManager.setCache(
+                    for: request.endpoint,
+                    url: request.url,
+                    data: data
+                )
                 completion(.success(result))
-            } catch {
+            }
+            catch {
                 completion(.failure(error))
             }
         }
@@ -71,10 +81,11 @@ final class RMService {
     // MARK: - Private
     
     private func request(from rmRequest: RMRequest) -> URLRequest? {
-        guard let url = rmRequest.url else { return nil }
+        guard let url = rmRequest.url else {
+            return nil
+        }
         var request = URLRequest(url: url)
         request.httpMethod = rmRequest.httpMethod
-        
         return request
     }
 }

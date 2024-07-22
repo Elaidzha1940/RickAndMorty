@@ -15,7 +15,7 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSSSZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
         formatter.timeZone = .current
         return formatter
     }()
@@ -23,8 +23,7 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     static let shortDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.dateStyle = .short
-        
+        formatter.timeStyle = .short
         formatter.timeZone = .current
         return formatter
     }()
@@ -34,7 +33,7 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     }
     
     public var displayValue: String {
-        if value.isEmpty { return "None"}
+        if value.isEmpty { return "None" }
         
         if let date = Self.dateFormatter.date(from: value),
            type == .created {
@@ -65,42 +64,42 @@ final class RMCharacterInfoCollectionViewCellViewModel {
         var tintColor: UIColor {
             switch self {
             case .status:
-                return .systemCyan
+                return .systemBlue
             case .gender:
-                return .systemTeal
+                return .systemRed
             case .type:
-                return .systemCyan
+                return .systemPurple
             case .species:
-                return .systemTeal
+                return .systemGreen
             case .origin:
-                return .systemCyan
+                return .systemOrange
             case .created:
-                return .systemTeal
+                return .systemPink
             case .location:
-                return .systemCyan
+                return .systemYellow
             case .episodeCount:
-                return .systemTeal
+                return .systemMint
             }
         }
         
         var iconImage: UIImage? {
             switch self {
             case .status:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .gender:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .type:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .species:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .origin:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .created:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .location:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             case .episodeCount:
-                return UIImage(systemName: "person")
+                return UIImage(systemName: "bell")
             }
         }
         

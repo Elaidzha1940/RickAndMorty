@@ -13,22 +13,36 @@ import Foundation
 final class RMAPICacheManager {
     // API URL: Data
     
-    private var cacheDictionary: [RMEndpoint: NSCache<NSString, NSData>] = [:]
-        
+    /// Cache map
+    private var cacheDictionary: [
+        RMEndpoint: NSCache<NSString, NSData>
+    ] = [:]
+    
+    /// Constructor
     init() {
         setUpCache()
     }
     
     // MARK: - Public
     
-    public func chachedResponse(for endpoint: RMEndpoint, url: URL?) -> Data? {
+    /// Get cached API response
+    /// - Parameters:
+    ///   - endpoint: Endpoiint to cahce for
+    ///   - url: Url key
+    /// - Returns: Nullable data
+    public func cachedResponse(for endpoint: RMEndpoint, url: URL?) -> Data? {
         guard let targetCache = cacheDictionary[endpoint], let url = url else {
             return nil
         }
         let key = url.absoluteString as NSString
-        return targetCache.object(forKey: key) as Data?
+        return targetCache.object(forKey: key) as? Data
     }
     
+    /// Set API response cache
+    /// - Parameters:
+    ///   - endpoint: Endpoint to cache for
+    ///   - url: Url string
+    ///   - data: Data to set in cache
     public func setCache(for endpoint: RMEndpoint, url: URL?, data: Data) {
         guard let targetCache = cacheDictionary[endpoint], let url = url else {
             return
@@ -39,6 +53,7 @@ final class RMAPICacheManager {
     
     // MARK: - Private
     
+    /// Set up dictionary
     private func setUpCache() {
         RMEndpoint.allCases.forEach({ endpoint in
             cacheDictionary[endpoint] = NSCache<NSString, NSData>()

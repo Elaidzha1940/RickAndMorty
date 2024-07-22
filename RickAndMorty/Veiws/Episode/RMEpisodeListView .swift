@@ -15,18 +15,21 @@ protocol RMEpisodeListViewDelegate: AnyObject {
         didSelectEpisode episode: RMEpisode
     )
 }
-/// View that handels showing list of episodes, loader, etc.
+
+/// View that handles showing list of episodes, loader, etc.
 final class RMEpisodeListView: UIView {
+
     public weak var delegate: RMEpisodeListViewDelegate?
+
     private let viewModel = RMEpisodeListViewModel()
-    
+
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .medium)
+        let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
-    
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -42,39 +45,39 @@ final class RMEpisodeListView: UIView {
                                 withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
-    
+
     // MARK: - Init
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews(collectionView, spinner)
-        addConstraint()
+        addConstraints()
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchEpisodes()
-        setUPCollectionView()
+        setUpCollectionView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
-    
-    private func addConstraint() {
+
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-    
-    private func setUPCollectionView() {
+
+    private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
     }
@@ -89,13 +92,13 @@ extension RMEpisodeListView: RMEpisodeListViewModelDelegate {
             self.collectionView.alpha = 1
         }
     }
-    
+
     func didLoadMoreEpisodes(with newIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)
         }
     }
-    
+
     func didSelectEpisode(_ episode: RMEpisode) {
         delegate?.rmEpisodeListView(self, didSelectEpisode: episode)
     }

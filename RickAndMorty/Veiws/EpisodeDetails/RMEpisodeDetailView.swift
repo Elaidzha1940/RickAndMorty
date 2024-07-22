@@ -20,7 +20,7 @@ final class RMEpisodeDetailView: UIView {
 
     public weak var delegate: RMEpisodeDetailViewDelegate?
 
-    private var viewModel: RMEpisodeDetailViewViewModel? {
+    private var viewModel: RMEpisodeDetailViewModel? {
         didSet {
             spinner.stopAnimating()
             self.collectionView?.reloadData()
@@ -46,7 +46,7 @@ final class RMEpisodeDetailView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
-        let collectionView = createColectionView()
+        let collectionView = createCollectionView()
         addSubviews(collectionView, spinner)
         self.collectionView = collectionView
         addConstraints()
@@ -64,7 +64,7 @@ final class RMEpisodeDetailView: UIView {
         }
 
         NSLayoutConstraint.activate([
-            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 300),
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -76,7 +76,7 @@ final class RMEpisodeDetailView: UIView {
         ])
     }
 
-    private func createColectionView() -> UICollectionView {
+    private func createCollectionView() -> UICollectionView {
         let layout = UICollectionViewCompositionalLayout { section, _ in
             return self.layout(for: section)
         }
@@ -98,7 +98,7 @@ final class RMEpisodeDetailView: UIView {
 
     // MARK: - Public
 
-    public func configure(with viewModel: RMEpisodeDetailViewViewModel) {
+    public func configure(with viewModel: RMEpisodeDetailViewModel) {
         self.viewModel = viewModel
     }
 }

@@ -10,16 +10,16 @@
 import UIKit
 
 protocol RMEpisodeDataRender {
-    var name:     String { get }
+    var name: String { get }
     var air_date: String { get }
-    var episode:  String { get }
+    var episode: String { get }
 }
 
 final class RMCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
     
     private let episodeDataUrl: URL?
     private var isFetching = false
-    private var dataBlock: ((RMEpisodeDataRender) -> ())?
+    private var dataBlock: ((RMEpisodeDataRender) -> Void)?
     
     public let borderColor: UIColor
     
@@ -34,15 +34,15 @@ final class RMCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
     
     // MARK: - Init
     
-    init(episodeDataUrl: URL?, borderColor: UIColor = .systemGray) {
+    init(episodeDataUrl: URL?, borderColor: UIColor = .systemBlue) {
         self.episodeDataUrl = episodeDataUrl
         self.borderColor = borderColor
     }
     
     // MARK: - Public
     
-    public func registerForData(_ block: @escaping (RMEpisodeDataRender) -> ()) {
-        
+    public func registerForData(_ block: @escaping (RMEpisodeDataRender) -> Void) {
+        self.dataBlock = block
     }
     
     public func fetchEpisode() {
@@ -60,7 +60,7 @@ final class RMCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
         
         isFetching = true
         
-        RMService.shared.execute(request, expecting: RMEpisode.self) { [weak self ] result in
+        RMService.shared.execute(request, expecting: RMEpisode.self) { [weak self] result in
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {
@@ -72,11 +72,11 @@ final class RMCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
         }
     }
     
-    static func == (lhs: RMCharacterEpisodeCollectionViewCellViewModel, rhs: RMCharacterEpisodeCollectionViewCellViewModel) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
+    }
+    
+    static func == (lhs: RMCharacterEpisodeCollectionViewCellViewModel, rhs: RMCharacterEpisodeCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }

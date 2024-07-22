@@ -14,34 +14,32 @@ import UIKit
 // Render no results zero state
 // Searching / API Call
 
-/// Configure controller to search
+/// Configurable controller to search
 final class RMSearchViewController: UIViewController {
     /// Configuration for search session
     struct Config {
         enum `Type` {
             case character // name | status | gender
-            case episode // name |
+            case episode // name
             case location // name | type
             
             var endpoint: RMEndpoint {
                 switch self {
-                case .character:
-                    return .character
-                case .episode:
-                    return .episode
-                case .location:
-                    return .location
+                case .character: return .character
+                case .episode: return .episode
+                case .location: return .location
                 }
             }
+            
             
             var title: String {
                 switch self {
                 case .character:
-                    return "Seach Characters"
+                    return "Search Characters"
                 case .location:
-                    return "Seach Location"
+                    return "Search Location"
                 case .episode:
-                    return "Seach Episode"
+                    return "Search Episode"
                 }
             }
         }
@@ -73,15 +71,17 @@ final class RMSearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(searchView)
         addConstraints()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(didTapExecuteSearch))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Search",
+            style: .done,
+            target: self,
+            action: #selector(didTapExecuteSearch)
+        )
         searchView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewDidDisappear(animated)
         searchView.presentKeyboard()
     }
     
