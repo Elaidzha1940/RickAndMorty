@@ -36,7 +36,7 @@ final class RMSearchResultsView: UIView {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 50, left: 10, bottom: 10, right: 10)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
@@ -210,7 +210,7 @@ extension RMSearchResultsView: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         // Episode
-        let width = UIDevice.isiPhone ? bounds.width-20 : (bounds.width-30) / 2 
+        let width = UIDevice.isiPhone ? bounds.width-20 : (bounds.width-30) / 2
         return CGSize(width: width, height: 100)
     }
     
