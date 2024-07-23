@@ -5,15 +5,11 @@ Full featured iOS app showcasing the Rick And Morty API.
 -----
 
 <img src="https://github.com/user-attachments/assets/4f709f43-0f1f-49e3-8abd-1ed725ff1c38" width="150" height="290">
-
-
-
-<img width="381" alt="1" src="https://github.com/user-attachments/assets/4f709f43-0f1f-49e3-8abd-1ed725ff1c38" width="90" height="270">
-<img width="381" alt="2" src="https://github.com/user-attachments/assets/55ea36d6-f3af-4756-9c6a-e931a549fb15" width="150" height="290">
-<img width="381" alt="3" src="https://github.com/user-attachments/assets/9e0e389a-b360-4251-9ae9-a7654a1a61d4" width="150" height="290">
-<img width="381" alt="4" src="https://github.com/user-attachments/assets/c54bba8d-c5bd-44a7-b698-d5cf53a7ad80" width="150" height="290">
-<img width="381" alt="5" src="https://github.com/user-attachments/assets/90c04825-b56b-48bd-a94e-55cbca024aa4" width="150" height="290">
-<img width="381" alt="6" src="https://github.com/user-attachments/assets/9e15a1d7-9258-4c7c-8cda-c19eff1191c9" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/55ea36d6-f3af-4756-9c6a-e931a549fb15" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/9e0e389a-b360-4251-9ae9-a7654a1a61d4" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/c54bba8d-c5bd-44a7-b698-d5cf53a7ad80" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/90c04825-b56b-48bd-a94e-55cbca024aa4" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/9e15a1d7-9258-4c7c-8cda-c19eff1191c9" width="150" height="290">
 
 <img width="381" alt="0" src="https://github.com/user-attachments/assets/607fc7e3-c435-49e6-bc95-e3a9f1a1445d" width="150" height="290">
 <img width="381" alt="7" src="https://github.com/user-attachments/assets/ad0caa6d-9f6b-4996-9330-61556e0d3ef8" width="150" height="290">
