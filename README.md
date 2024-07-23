@@ -11,13 +11,13 @@ Full featured iOS app showcasing the Rick And Morty API.
 <img src="https://github.com/user-attachments/assets/90c04825-b56b-48bd-a94e-55cbca024aa4" width="150" height="290">
 <img src="https://github.com/user-attachments/assets/9e15a1d7-9258-4c7c-8cda-c19eff1191c9" width="150" height="290">
 
-<img width="381" alt="0" src="https://github.com/user-attachments/assets/607fc7e3-c435-49e6-bc95-e3a9f1a1445d" width="150" height="290">
-<img width="381" alt="7" src="https://github.com/user-attachments/assets/ad0caa6d-9f6b-4996-9330-61556e0d3ef8" width="150" height="290">
-<img width="381" alt="8" src="https://github.com/user-attachments/assets/8fdb2bf0-5e91-4d0b-928c-2c282d26960a" width="150" height="290">
-<img width="381" alt="9" src="https://github.com/user-attachments/assets/3db1ba9e-40a0-4bb9-a8ef-6aece5927f96" width="150" height="290">
-<img width="381" alt="10" src="https://github.com/user-attachments/assets/b038458d-f895-4fd6-9a55-adb8d330b51a" width="150" height="290">
-<img width="381" alt="11" src="https://github.com/user-attachments/assets/807a596c-cadd-4f09-93c4-e1759c6d3784" width="150" height="290">
-<img width="381" alt="12" src="https://github.com/user-attachments/assets/ff713e36-e5e9-47c0-a8b9-fcc060fc091f" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/607fc7e3-c435-49e6-bc95-e3a9f1a1445d" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/ad0caa6d-9f6b-4996-9330-61556e0d3ef8" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/8fdb2bf0-5e91-4d0b-928c-2c282d26960a" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/3db1ba9e-40a0-4bb9-a8ef-6aece5927f96" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/b038458d-f895-4fd6-9a55-adb8d330b51a" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/807a596c-cadd-4f09-93c4-e1759c6d3784" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/ff713e36-e5e9-47c0-a8b9-fcc060fc091f" width="150" height="290">
 
 Overview
 -----
