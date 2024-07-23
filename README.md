@@ -4,7 +4,7 @@
 Full featured iOS app showcasing the Rick And Morty API.
 -----
 
-<img src="https://github.com/Elaidzha1940/GitHubFollowers/assets/64445918/35953ebb-feeb-4f2b-9a02-0373571d4955" width="150" height="290">
+<img src="https://github.com/user-attachments/assets/4f709f43-0f1f-49e3-8abd-1ed725ff1c38" width="150" height="290">
 
 
 
