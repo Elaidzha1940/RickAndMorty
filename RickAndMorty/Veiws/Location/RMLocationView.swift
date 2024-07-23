@@ -29,7 +29,7 @@ final class RMLocationView: UIView {
             
             viewModel?.registerDidFinishPaginationBlock { [weak self] in
                 DispatchQueue.main.async {
-                    // Loading indicator go bye 
+                    // Loading indicator go bye
                     self?.tableView.tableFooterView = nil
                     // Reload data
                     self?.tableView.reloadData()

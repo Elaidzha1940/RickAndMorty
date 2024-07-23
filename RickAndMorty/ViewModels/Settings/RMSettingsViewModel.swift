@@ -11,5 +11,5 @@ import Foundation
 
 struct RMSettingsViewModel {
     let cellViewModel: [RMSettingsCellViewModel]
-
+    
 }

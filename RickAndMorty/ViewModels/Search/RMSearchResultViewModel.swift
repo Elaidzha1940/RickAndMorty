@@ -117,7 +117,7 @@ final class RMSearchResultViewModel {
                     var newResults: [RMCharacterCollectionViewCellViewModel] = []
                     newResults = existingResults + additionalResults
                     strongSelf.results = .characters(newResults)
-
+                    
                     DispatchQueue.main.async {
                         strongSelf.isLoadingMoreResults = false
                         

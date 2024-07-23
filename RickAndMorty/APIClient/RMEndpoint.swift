@@ -12,9 +12,9 @@ import Foundation
 /// Represents unique API endpoint
 @frozen enum RMEndpoint: String, CaseIterable, Hashable {
     /// Endpoint to get character info
-     case character
+    case character
     /// Endpoint to get location info
-     case location
+    case location
     /// Endpoint to get episode info
-     case episode
+    case episode
 }
