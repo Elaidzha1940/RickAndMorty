@@ -32,12 +32,13 @@ Overview
 - Universal App: Run on iPhone, iPad, and Mac
 - Built in Xcode 15
 - [Leverages free Rick & Morty API](https://rickandmortyapi.com/)
------
 
 Design
-------
+-----
+
 The app has five key area
-------
+-----
+
 - Characters
 - Locations
 - Episodes
